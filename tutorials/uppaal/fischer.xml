@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>int id;</declaration><template><name x="16" y="-8">P</name><parameter>const int i</parameter><declaration>clock x;
+const int k = 2;</declaration><location id="id0" x="216" y="176"><name x="216" y="192">wait</name></location><location id="id1" x="216" y="48"><name x="216" y="16">req</name><label kind="invariant" x="240" y="32">x&lt;=k</label></location><location id="id2" x="64" y="48"></location><location id="id3" x="64" y="176"><name x="56" y="192">cs</name></location><init ref="id2"/><transition><source ref="id2"/><target ref="id1"/><label kind="guard" x="88" y="24">id== 0</label><label kind="assignment" x="160" y="24">x= 0</label></transition><transition><source ref="id1"/><target ref="id0"/><label kind="guard" x="176" y="64">x&lt;=k</label><label kind="assignment" x="176" y="112">x= 0,
+id= i</label></transition><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="264" y="136">id== 0</label><label kind="assignment" x="264" y="72">x= 0</label><nail x="251" y="146"/><nail x="251" y="82"/></transition><transition><source ref="id0"/><target ref="id3"/><label kind="guard" x="136" y="184">x&gt;k and id==i</label></transition><transition><source ref="id3"/><target ref="id2"/><label kind="assignment" x="8" y="80">id= 0</label></transition></template><system>P1 = P(1);
+P2 = P(2);
+P3 = P(3);
+P4 = P(4);
+system P1, P2, P3, P4;</system></nta>

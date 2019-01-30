@@ -1,0 +1,2 @@
+The Gossiping Persons
+There are n people. Each has a secret. They are desperate to tell their secrets to each other. They communicate over the phone. When two people are on the phone, they exchange the secrets they currently know. What is the minimum number of calls needed so that each person knows all secrets?

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nta PUBLIC "-//Uppaal Team//DTD Flat System 1.0//EN" "http://www.docs.uu.se/docs/rtmv/uppaal/xml/flat-1_0.dtd">
+<nta>
+  <declaration>//Insert declarations of global clocks, variables, constants and channels.
+</declaration>
+  <template>
+    <name x="5" y="5">P</name>
+    <parameter x="5" y="20"/>
+    <declaration>//Insert local declarations of clocks, variables and constants.
+</declaration>
+  <location x="272" y="112" id="id0"><name x="280" y="80">s0</name><label kind="invariant" x="262" y="127"/></location><location x="272" y="240" id="id1"><name x="288" y="216">s1</name><label kind="invariant" x="262" y="255"/></location><location x="272" y="368" id="id2"><name x="288" y="360">s3</name><label kind="invariant" x="262" y="383"/></location><location x="144" y="240" id="id3"><name x="152" y="208">s4</name><label kind="invariant" x="134" y="255"/></location><location x="400" y="240" id="id4"><name x="416" y="216">s2</name><label kind="invariant" x="390" y="255"/></location><init ref="id0"/><transition><source ref="id0"/><target ref="id1"/></transition><transition><source ref="id1"/><target ref="id4"/></transition><transition><source ref="id0"/><target ref="id4"/></transition><transition><source ref="id1"/><target ref="id2"/></transition><transition><source ref="id2"/><target ref="id3"/></transition><transition><source ref="id3"/><target ref="id1"/></transition><transition><source ref="id4"/><target ref="id2"/></transition></template>
+  <instantiation>//Insert process assignments.
+</instantiation>
+  <system>//Edit system definition.
+system P;</system>
+</nta>

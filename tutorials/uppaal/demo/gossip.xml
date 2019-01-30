@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+
+// A variable used to communicate secrets between two persons.
+int global_secrets = 0;
+
+chan call, answer;
+
+// A variable used to indicate whether it is possible to make a call.
+// This will force a call to be immediately followed by an answer
+// (before the next call can be made).
+bool line_busy = false;
+
+// Total number of calls made.
+int n_calls = 0;
+</declaration><template><name x="5" y="5">Person</name><parameter>int my_secrets</parameter><declaration>// Place local declarations here.
+</declaration><location id="id0" x="-296" y="-112"><name x="-336" y="-152">receive_call</name></location><location id="id1" x="440" y="-112"><name x="430" y="-142">make_call</name></location><location id="id2" x="88" y="-112"><name x="78" y="-142">idle</name></location><init ref="id2"/><transition><source ref="id1"/><target ref="id2"/><label kind="synchronisation" x="248" y="0">answer?</label><label kind="assignment" x="144" y="24">my_secrets = my_secrets | global_secrets</label><nail x="272" y="-16"/></transition><transition><source ref="id0"/><target ref="id2"/><label kind="synchronisation" x="-144" y="0">answer!</label><label kind="assignment" x="-272" y="24">global_secrets = my_secrets, line_busy=false</label><nail x="-120" y="-8"/></transition><transition><source ref="id2"/><target ref="id0"/><label kind="synchronisation" x="-136" y="-256">call?</label><label kind="assignment" x="-272" y="-232">my_secrets = my_secrets | global_secrets</label><nail x="-120" y="-208"/></transition><transition><source ref="id2"/><target ref="id1"/><label kind="guard" x="232" y="-232">not line_busy</label><label kind="synchronisation" x="256" y="-280">call!</label><label kind="assignment" x="80" y="-256">global_secrets = my_secrets, n_calls=n_calls+1, line_busy=true</label><nail x="272" y="-208"/></transition></template><system>// Place template instantiations here.
+
+P1 = Person(1);
+P2 = Person(2);
+P3 = Person(4);
+P4 = Person(8);
+P5 = Person(16);
+
+int all_secrets = 1 | 2 | 4 | 8 | 16; // 31
+
+// List one or more processes to be composed into a system.
+system P1, P2, P3, P4, P5;
+</system></nta>

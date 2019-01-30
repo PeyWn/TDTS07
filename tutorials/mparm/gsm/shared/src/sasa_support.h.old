@@ -1,0 +1,13 @@
+#ifndef SASA_SUPPORT_H
+#define SASA_SUPPORT_H
+
+#include "sim_support_flags.h"
+/*
+#define PR(x,y,z) pr(NULL, z, PR_CPU_ID | PR_DEC | PR_NEWL )
+#define MARCUS_DEBUG_MESSAGE(x)  pr(NULL, x, PR_CPU_ID | PR_DEC | PR_NEWL );
+*/
+#define PR(x,y,z) pr(NULL, z, PR_CPU_ID | PR_DEC | PR_NEWL )
+#define MARCUS_DEBUG_MESSAGE(x) pr(NULL, x, PR_CPU_ID | PR_DEC | PR_NEWL );
+
+#define get_id get_proc_id
+#endif

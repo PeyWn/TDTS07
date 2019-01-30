@@ -1,0 +1,271 @@
+Uploaded Program Binary: TargetMem_1.mem
+Uploaded Program Binary: TargetMem_2.mem
+Scratchpad 0 - Size: 0x00001000, Base Address: 0x22000000
+Scratchpad 1 - Size: 0x00001000, Base Address: 0x22020000
+Scratch-semaphore0 0 - Size: 0x00001000, Base Address: 0x22001000
+Scratch-semaphore1 1 - Size: 0x00001000, Base Address: 0x22021000
+	Processor 1 - 1 
+	Processor 1 - 1 
+	Processor 1 - 1 
+	Processor 1 - 1 
+	Processor 1 starts measuring
+Processor 0 - 1 
+Processor 0 - 1 
+Processor 0 - 1 
+Processor 0 - 1 
+Processor 0 starts measuring
+	Processor 1 - 999 
+	Processor 1 - -11 
+Processor 0 - 999 
+Processor 0 - -11 
+	Processor 1 - 20040 
+Processor 0 - 20040 
+	Processor 1 - -9876 
+	Processor 1 - -18 
+Processor 0 - -9876 
+Processor 0 - -18 
+Processor 0 - -23000 
+Processor 0 - -19 
+Processor 0 - -9877 
+Processor 0 - 4321 
+Processor 0 - -9876 
+Processor 0 - -18 
+Processor 0 - -23000 
+Processor 0 - -19 
+Processor 0 - -9877 
+Processor 0 - 4321 
+Processor 0 - -9876 
+Processor 0 - -18 
+	Processor 1 - -19 
+	Processor 1 - -9877 
+	Processor 1 - 4321 
+	Processor 1 - 25000 
+	Processor 1 - 217 
+	Processor 1 - 98 
+	Processor 1 - 180 
+	Processor 1 - 104 
+	Processor 1 - 83 
+	Processor 1 - 80 
+	Processor 1 - 52 
+	Processor 1 - 251 
+	Processor 1 - 101 
+	Processor 1 - 180 
+	Processor 1 - 126 
+	Processor 1 - 99 
+	Processor 1 - 104 
+	Processor 1 - 78 
+	Processor 1 - 169 
+	Processor 1 - 203 
+	Processor 1 - 60 
+	Processor 1 - 49 
+	Processor 1 - 218 
+	Processor 1 - 166 
+	Processor 1 - 77 
+	Processor 1 - 44 
+	Processor 1 - 90 
+	Processor 1 - 234 
+	Processor 1 - 44 
+	Processor 1 - 33 
+	Processor 1 - 240 
+	Processor 1 - 109 
+	Processor 1 - 80 
+	Processor 1 - 151 
+	Processor 1 - 48 
+	Processor 1 - 226 
+	Processor 1 - 199 
+	Processor 1 - -123456 
+	Processor 1 - -9876 
+	Processor 1 - -18 
+Processor 0 - -23000 
+Processor 0 - -19 
+Processor 0 - -9877 
+Processor 0 - 4321 
+Processor 0 - -9876 
+Processor 0 - -18 
+	Processor 1 - -19 
+	Processor 1 - -9877 
+	Processor 1 - 4321 
+	Processor 1 - 25000 
+	Processor 1 - 215 
+	Processor 1 - 233 
+	Processor 1 - 166 
+	Processor 1 - 124 
+	Processor 1 - 27 
+	Processor 1 - 101 
+	Processor 1 - 105 
+	Processor 1 - 34 
+	Processor 1 - 60 
+	Processor 1 - 175 
+	Processor 1 - 118 
+	Processor 1 - 93 
+	Processor 1 - 101 
+	Processor 1 - 43 
+	Processor 1 - 226 
+	Processor 1 - 223 
+	Processor 1 - 81 
+	Processor 1 - 232 
+	Processor 1 - 164 
+	Processor 1 - 176 
+	Processor 1 - 137 
+	Processor 1 - 144 
+	Processor 1 - 221 
+	Processor 1 - 22 
+	Processor 1 - 211 
+	Processor 1 - 61 
+	Processor 1 - 175 
+	Processor 1 - 104 
+	Processor 1 - 167 
+	Processor 1 - 9 
+	Processor 1 - 204 
+	Processor 1 - 139 
+	Processor 1 - 80 
+	Processor 1 - -123456 
+	Processor 1 - -9876 
+	Processor 1 - -18 
+Processor 0 - -23000 
+Processor 0 - -19 
+Processor 0 - -9877 
+Processor 0 - 4321 
+Processor 0 - -9876 
+Processor 0 - -18 
+Processor 0 - -23000 
+	Processor 1 - -19 
+	Processor 1 - -9877 
+	Processor 1 - 4321 
+	Processor 1 - 25000 
+	Processor 1 - 215 
+	Processor 1 - 233 
+	Processor 1 - 166 
+	Processor 1 - 60 
+	Processor 1 - 36 
+	Processor 1 - 101 
+	Processor 1 - 74 
+	Processor 1 - 68 
+	Processor 1 - 132 
+	Processor 1 - 141 
+	Processor 1 - 57 
+	Processor 1 - 28 
+	Processor 1 - 101 
+	Processor 1 - 137 
+	Processor 1 - 121 
+	Processor 1 - 35 
+	Processor 1 - 145 
+	Processor 1 - 185 
+	Processor 1 - 27 
+	Processor 1 - 101 
+	Processor 1 - 10 
+	Processor 1 - 74 
+	Processor 1 - 229 
+	Processor 1 - 170 
+	Processor 1 - 72 
+	Processor 1 - 20 
+	Processor 1 - 227 
+	Processor 1 - 41 
+	Processor 1 - 39 
+	Processor 1 - 118 
+	Processor 1 - 157 
+	Processor 1 - 32 
+	Processor 1 - 202 
+	Processor 1 - -123456 
+	Processor 1 - -9876 
+	Processor 1 - -18 
+Processor 0 - -19 
+Processor 0 - -9877 
+Processor 0 - 4321 
+Processor 0 stops measuring
+Processor 0 shuts down
+Processor 0 - -9876 
+Processor 0 - -18 
+Processor 0 - -23000 
+	Processor 1 - -19 
+	Processor 1 - -9877 
+	Processor 1 - 4321 
+	Processor 1 - 25000 
+	Processor 1 - 216 
+	Processor 1 - 234 
+	Processor 1 - 142 
+	Processor 1 - 124 
+	Processor 1 - 27 
+	Processor 1 - 151 
+	Processor 1 - 73 
+	Processor 1 - 132 
+	Processor 1 - 146 
+	Processor 1 - 245 
+	Processor 1 - 171 
+	Processor 1 - 25 
+	Processor 1 - 125 
+	Processor 1 - 44 
+	Processor 1 - 58 
+	Processor 1 - 220 
+	Processor 1 - 245 
+	Processor 1 - 189 
+	Processor 1 - 25 
+	Processor 1 - 101 
+	Processor 1 - 167 
+	Processor 1 - 214 
+	Processor 1 - 94 
+	Processor 1 - 221 
+	Processor 1 - 71 
+	Processor 1 - 35 
+	Processor 1 - 151 
+	Processor 1 - 74 
+	Processor 1 - 64 
+	Processor 1 - 145 
+	Processor 1 - 42 
+	Processor 1 - 73 
+	Processor 1 - 44 
+	Processor 1 - -123456 
+	Processor 1 - -9876 
+	Processor 1 - -18 
+Processor 0 - -19 
+Processor 0 - -9877 
+Processor 0 - 4321 
+Processor 0 - -9876 
+Processor 0 - -18 
+Processor 0 - -23000 
+	Processor 1 - -19 
+	Processor 1 - -9877 
+	Processor 1 - 4321 
+	Processor 1 - 25000 
+	Processor 1 - 217 
+	Processor 1 - 108 
+	Processor 1 - 125 
+	Processor 1 - 188 
+	Processor 1 - 82 
+	Processor 1 - 227 
+	Processor 1 - 43 
+	Processor 1 - 181 
+	Processor 1 - 17 
+	Processor 1 - 49 
+	Processor 1 - 149 
+	Processor 1 - 244 
+	Processor 1 - 225 
+	Processor 1 - 73 
+	Processor 1 - 42 
+	Processor 1 - 200 
+	Processor 1 - 108 
+	Processor 1 - 137 
+	Processor 1 - 181 
+	Processor 1 - 101 
+	Processor 1 - 70 
+	Processor 1 - 246 
+	Processor 1 - 197 
+	Processor 1 - 136 
+	Processor 1 - 168 
+	Processor 1 - 227 
+	Processor 1 - 177 
+	Processor 1 - 9 
+	Processor 1 - 121 
+	Processor 1 - 94 
+	Processor 1 - 136 
+	Processor 1 - 56 
+	Processor 1 - 147 
+	Processor 1 - -123456 
+	Processor 1 stops measuring
+	Processor 1 shuts down
+
+
+Simulation ended
+
+
+SystemC: simulation stopped by user.
