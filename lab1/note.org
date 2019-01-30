@@ -1,0 +1,12 @@
+
+
+* Modules
+** Generator
+   Generates random traffic in one direction, per second (or something)
+** Sensor
+   Stores a queue of cars waiting for green light
+   When light is green start empty the queue.  
+** Controller
+   Manages the traffic light logic
+*** States
+    Has six states
