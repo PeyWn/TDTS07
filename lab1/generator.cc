@@ -18,6 +18,39 @@ void gen_random_list(int *array, int n) {
     array[i] = rand()%2;
 }
 
+SC_MODULE(Generator_v2) {
+  sc_out<int> o_p;
+  int C_queue [100];
+
+  void gen_thread() {
+    int i = 0;
+    for (;;) {
+      wait(2, SC_SEC);
+      if ( ++i < nb_car ) {
+        o_p->write(C_queue[i]);
+      }
+      else{
+        gen_random_list(C_queue, nb_car);
+        i = 0;
+        }
+    }
+  }
+
+  void print_method() {
+    cout << sc_time_stamp() << ": Cars " << o_p << endl;
+  }
+
+  SC_CTOR(Generator_v2) {
+    o_p.initialize(0);
+    gen_random_list(C_queue, nb_car);
+
+    SC_THREAD(gen_thread);
+    SC_METHOD(print_method);
+    sensitive << o_p;
+  }
+}; // END Generator
+
+
 SC_MODULE(Generator) {
   sc_out<int> N_o_p, S_o_p, E_o_p, W_o_p;
 
@@ -116,7 +149,9 @@ int sc_main(int argc, char *argv[]) {
   sc_set_time_resolution(1, SC_MS);
 
   sc_signal<bool> N_o_sig, S_o_sig, E_o_sig, W_o_sig;
-
+  Generator_v2 gen("North traffic generator");
+  gen(N_o_sig);
+  /* 
   gen_random_list(N_queue, nb_car);
   gen_random_list(S_queue, nb_car);
   gen_random_list(E_queue, nb_car);
@@ -124,7 +159,7 @@ int sc_main(int argc, char *argv[]) {
 
   Generator gen("Generator_1");
   gen(N_o_sig, S_o_sig, E_o_sig, W_o_sig);
-
+  */
   Sensor sensor_module("Sensor_1");
   sensor_module(N_o_sig, S_o_sig, E_o_sig, W_o_sig);
 
