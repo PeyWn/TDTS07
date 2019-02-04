@@ -7,10 +7,10 @@ using std::endl;
 
 
 int nb_car = 100;
-int N_queue[nb_car];
-int S_queue[nb_car];
-int E_queue[nb_car];
-int W_queue[nb_car];
+bool N_queue[nb_car];
+bool S_queue[nb_car];
+bool E_queue[nb_car];
+bool W_queue[nb_car];
 
 
 void gen_random_list(int *array, int n) {
@@ -53,12 +53,27 @@ SC_MODULE(Generator) {
 }; // END Generator
 
 SC_MODULE(Sensor) {
-  sc_in<int> N_i_p, S_i_p, E_i_p, W_i_p;
+  sc_in<bool> N_i_p, S_i_p, E_i_p, W_i_p;
   sc_out<bool> NS_o_p, SS_o_p, ES_o_p, WE_o_p;
   sc_event print_ev;
 
   void sensor_method() {
-
+    if N_i_p
+      NS_o_p = TRUE; 
+    else 
+      NS_o_p = FALSE;
+    if S_i_p
+      SS_o_p = TRUE; 
+    else 
+      SS_o_p = FALSE;
+    if E_i_p
+      ES_o_p = TRUE; 
+    else 
+      ES_o_p = FALSE;
+    if W_i_p
+      WS_o_p = TRUE; 
+    else 
+      WS_o_p = FALSE;
   }
 
   void print_method() {
@@ -89,7 +104,7 @@ int sc_main(int argc, char *argv[]) {
   sc_set_default_time_unit(1, SC_SEC);
   sc_set_time_resolution(1, SC_MS);
 
-  sc_signal<int> N_o_sig, S_o_sig, E_o_sig, W_o_sig;
+  sc_signal<bool> N_o_sig, S_o_sig, E_o_sig, W_o_sig;
 
   gen_random_list(N_queue, nb_car);
   gen_random_list(S_queue, nb_car);
@@ -99,11 +114,9 @@ int sc_main(int argc, char *argv[]) {
   Generator gen("Generator_1");
   gen(N_o_sig, S_o_sig, E_o_sig, W_o_sig);
 
-
-/*
   Sensor sensor_module("Sensor_1");
   gen_module(N_o_sig, S_o_sig, E_o_sig, W_o_sig, )
-*/
+
   sc_start(300, SC_SEC);
   return 0;
 }
