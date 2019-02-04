@@ -108,6 +108,7 @@ int sc_main(int argc, char *argv[]) {
 
   sc_signal<bool> N_o_sig, S_o_sig, E_o_sig, W_o_sig;
   Generator gen_1("North_traffic_generator");
+  /*
   gen_1(N_o_sig);
   Generator gen_2("South_traffic_generator");
   gen_2(S_o_sig);
@@ -115,17 +116,12 @@ int sc_main(int argc, char *argv[]) {
   gen_3(E_o_sig);
   Generator gen_4("West_traffic_generator");
   gen_4(W_o_sig);
-  /* 
-  gen_random_list(N_queue, nb_car);
-  gen_random_list(S_queue, nb_car);
-  gen_random_list(E_queue, nb_car);
-  gen_random_list(W_queue, nb_car);
-
-  Generator gen("Generator_1");
-  gen(N_o_sig, S_o_sig, E_o_sig, W_o_sig);
   */
+
+  /*
   Sensor sensor_module("Sensor_1");
   sensor_module(N_o_sig, S_o_sig, E_o_sig, W_o_sig);
+  */
 
   sc_start(300, SC_SEC);
   return 0;
