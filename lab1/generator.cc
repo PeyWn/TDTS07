@@ -108,6 +108,7 @@ int sc_main(int argc, char *argv[]) {
 
   sc_signal<bool> N_o_sig, S_o_sig, E_o_sig, W_o_sig;
   Generator gen_1("North_traffic_generator");
+  gen_1(N_o_sig);
   /*
   gen_1(N_o_sig);
   Generator gen_2("South_traffic_generator");
