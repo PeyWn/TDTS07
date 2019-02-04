@@ -29,7 +29,7 @@ SC_MODULE(Generator) {
         S_o_p->write(S_queue.pop());
         E_o_p->write(E_queue.pop());
         W_o_p->write(W_queue.pop());
-      }         
+      }
     }
   }
 
@@ -85,7 +85,7 @@ SC_MODULE(Sensor) {
 int sc_main(int argc, char *argv[]) {
 
   srand(time(NULL));
-  
+
   sc_set_default_time_unit(1, SC_SEC);
   sc_set_time_resolution(1, SC_MS);
 
