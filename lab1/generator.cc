@@ -51,48 +51,6 @@ SC_MODULE(Generator) {
 }; // END Generator
 
 
-SC_MODULE(Generator) {
-  sc_out<int> N_o_p, S_o_p, E_o_p, W_o_p;
-
-  void gen_thread() {
-    int i = 0;
-    for (;;) {
-      wait(2, SC_SEC);
-      if ( ++i < nb_car ) {
-        N_o_p->write(N_queue[i]);
-        S_o_p->write(S_queue[i]);
-        E_o_p->write(E_queue[i]);
-        W_o_p->write(W_queue[i]);
-      }
-      else{
-        gen_random_list(N_queue, nb_car);
-        gen_random_list(S_queue, nb_car);
-        gen_random_list(E_queue, nb_car);
-        gen_random_list(W_queue, nb_car);
-        i = 0;
-        }
-    }
-  }
-
-  void print_method() {
-    cout << sc_time_stamp() << ": North Car " << N_o_p << endl;
-    cout << sc_time_stamp() << ": South Car " << S_o_p << endl;
-    cout << sc_time_stamp() << ": East Car "  << E_o_p << endl;
-    cout << sc_time_stamp() << ": West Car "  << W_o_p << endl;
-  }
-
-  SC_CTOR(Generator) {
-    N_o_p.initialize(0);
-    S_o_p.initialize(0);
-    E_o_p.initialize(0);
-    W_o_p.initialize(0);
-
-    SC_THREAD(gen_thread);
-    SC_METHOD(print_method);
-    sensitive << N_o_p << S_o_p << E_o_p << W_o_p;
-  }
-}; // END Generator
-
 SC_MODULE(Sensor) {
   sc_in<bool> N_i_p, S_i_p, E_i_p, W_i_p;
   sc_out<bool> NS_o_p, SS_o_p, ES_o_p, WS_o_p;
