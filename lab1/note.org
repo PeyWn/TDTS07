@@ -6,7 +6,10 @@
 ** Sensor
    Stores a queue of cars waiting for green light
    When light is green start empty the queue.  
+
+   If there
 ** Controller
    Manages the traffic light logic
 *** States
     Has six states
+ 
