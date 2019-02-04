@@ -7,10 +7,10 @@ using std::endl;
 
 
 int nb_car = 100;
-bool N_queue[nb_car];
-bool S_queue[nb_car];
-bool E_queue[nb_car];
-bool W_queue[nb_car];
+int N_queue[100];
+int S_queue[100];
+int E_queue[100];
+int W_queue[100];
 
 
 void gen_random_list(int *array, int n) {
@@ -54,26 +54,28 @@ SC_MODULE(Generator) {
 
 SC_MODULE(Sensor) {
   sc_in<bool> N_i_p, S_i_p, E_i_p, W_i_p;
-  sc_out<bool> NS_o_p, SS_o_p, ES_o_p, WE_o_p;
+  sc_out<bool> NS_o_p, SS_o_p, ES_o_p, WS_o_p;
   sc_event print_ev;
 
   void sensor_method() {
-    if N_i_p
-      NS_o_p = TRUE; 
-    else 
-      NS_o_p = FALSE;
-    if S_i_p
-      SS_o_p = TRUE; 
-    else 
-      SS_o_p = FALSE;
-    if E_i_p
-      ES_o_p = TRUE; 
-    else 
-      ES_o_p = FALSE;
-    if W_i_p
-      WS_o_p = TRUE; 
-    else 
-      WS_o_p = FALSE;
+    for (;;) {
+      if (N_i_p)
+        NS_o_p = true;
+      else
+        NS_o_p = false;
+      if (S_i_p)
+        SS_o_p = true;
+      else
+        SS_o_p = false;
+      if (E_i_p)
+        ES_o_p = true;
+      else
+        ES_o_p = false;
+      if (W_i_p)
+        WS_o_p = true;
+      else
+        WS_o_p = false;
+    }
   }
 
   void print_method() {
@@ -99,6 +101,7 @@ SC_MODULE(Sensor) {
 
 int sc_main(int argc, char *argv[]) {
 
+
   srand(time(NULL));
 
   sc_set_default_time_unit(1, SC_SEC);
@@ -115,7 +118,7 @@ int sc_main(int argc, char *argv[]) {
   gen(N_o_sig, S_o_sig, E_o_sig, W_o_sig);
 
   Sensor sensor_module("Sensor_1");
-  gen_module(N_o_sig, S_o_sig, E_o_sig, W_o_sig, )
+  sensor_module(N_o_sig, S_o_sig, E_o_sig, W_o_sig);
 
   sc_start(300, SC_SEC);
   return 0;
