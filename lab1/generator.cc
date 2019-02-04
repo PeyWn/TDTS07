@@ -14,12 +14,12 @@ int W_queue[100];
 
 
 void gen_random_list(int *array, int n) {
+  srand(time(NULL));
   for (int i = 0; i <= n; i++)
     array[i] = rand()%2;
 }
 
 SC_MODULE(Generator) {
-  srand(time(NULL));
 
   sc_out<bool> o_p{"gen_out"};
   int C_queue [100];
