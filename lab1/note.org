@@ -7,7 +7,9 @@
    Stores a queue of cars waiting for green light
    When light is green start empty the queue.  
 
-   If there
+   If there is North bound traffic --> Light Green
+   Then if there is South bound traffic --> Light Green
+   For crossing traffic wait 10 sek --> Light Red
 ** Controller
    Manages the traffic light logic
 *** States

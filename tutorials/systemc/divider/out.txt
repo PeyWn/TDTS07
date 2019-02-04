@@ -1,0 +1,4 @@
+quotient(1 s) = 0.5
+quotient(2 s) = 2
+quotient(4 s) = 2.5
+quotient(5 s) = 1.75

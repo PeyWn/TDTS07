@@ -27,7 +27,7 @@ SC_MODULE(Generator) {
   void gen_thread() {
     int i = 0;
     for (;;) {
-      wait(2, SC_SEC);
+      wait(8, SC_SEC);
       if ( ++i < nb_car ) {
         o_p->write(C_queue[i]);
       }
@@ -54,43 +54,34 @@ SC_MODULE(Generator) {
 
 
 SC_MODULE(Sensor) {
-  sc_in<bool> N_i_p, S_i_p, E_i_p, W_i_p;
-  sc_out<bool> NS_o_p, SS_o_p, ES_o_p, WS_o_p;
+  sc_in<bool> C_i_p, TL_i_p; // i_p --> Input port
+  sc_out<bool> S_o_p;
   sc_event print_ev;
 
   void sensor_method() {
+    int cars;
     for (;;) {
-      if (N_i_p)
-        NS_o_p = true;
+
+      if (i_p->read)
+        cars++;
+      if (TL_i_p->read)
+        cars--;
+      if (cars)
+        S_o_p = true;
       else
-        NS_o_p = false;
-      if (S_i_p)
-        SS_o_p = true;
-      else
-        SS_o_p = false;
-      if (E_i_p)
-        ES_o_p = true;
-      else
-        ES_o_p = false;
-      if (W_i_p)
-        WS_o_p = true;
-      else
-        WS_o_p = false;
+        S_o_p = false;
+
     }
   }
 
-  void print_method() {
-
+  void print_method() { 
   }
 
   SC_CTOR(Sensor) {
-    NS_o_p.initialize(0);
-    SS_o_p.initialize(0);
-    ES_o_p.initialize(0);
-    WS_o_p.initialize(0);
+    S_o_p.initialize(0);
 
     SC_METHOD(sensor_method);
-    sensitive << N_i_p << S_i_p << E_i_p << W_i_p;
+    sensitive << C_i_p << TL_i_p;
 
     SC_METHOD(print_method);
     dont_initialize();
