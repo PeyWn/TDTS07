@@ -22,14 +22,22 @@ SC_MODULE(Generator) {
   sc_out<int> N_o_p, S_o_p, E_o_p, W_o_p;
 
   void gen_thread() {
+    int i = 0;
     for (;;) {
       wait(2, SC_SEC);
-      if (sizeof(N_queue) != 0) {
-        N_o_p->write(N_queue.pop());
-        S_o_p->write(S_queue.pop());
-        E_o_p->write(E_queue.pop());
-        W_o_p->write(W_queue.pop());
+      if ( ++i < nb_car ) {
+        N_o_p->write(N_queue[i]);
+        S_o_p->write(S_queue[i]);
+        E_o_p->write(E_queue[i]);
+        W_o_p->write(W_queue[i]);
       }
+      else{
+        gen_random_list(N_queue, nb_car);
+        gen_random_list(S_queue, nb_car);
+        gen_random_list(E_queue, nb_car);
+        gen_random_list(W_queue, nb_car);
+        i = 0;
+        }
     }
   }
 
