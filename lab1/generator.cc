@@ -18,7 +18,7 @@ void gen_random_list(int *array, int n) {
     array[i] = rand()%2;
 }
 
-SC_MODULE(Generator_v2) {
+SC_MODULE(Generator) {
   sc_out<int> o_p;
   int C_queue [100];
 
@@ -40,7 +40,7 @@ SC_MODULE(Generator_v2) {
     cout << sc_time_stamp() << ": Cars " << o_p << endl;
   }
 
-  SC_CTOR(Generator_v2) {
+  SC_CTOR(Generator) {
     o_p.initialize(0);
     gen_random_list(C_queue, nb_car);
 
@@ -149,8 +149,14 @@ int sc_main(int argc, char *argv[]) {
   sc_set_time_resolution(1, SC_MS);
 
   sc_signal<bool> N_o_sig, S_o_sig, E_o_sig, W_o_sig;
-  Generator_v2 gen("North traffic generator");
-  gen(N_o_sig);
+  Generator gen_1("North_traffic_generator");
+  gen_1(N_o_sig);
+  Generator gen_2("South_traffic_generator");
+  gen_2(S_o_sig);
+  Generator gen_3("East_traffic_generator");
+  gen_3(E_o_sig);
+  Generator gen_4("West_traffic_generator");
+  gen_4(W_o_sig);
   /* 
   gen_random_list(N_queue, nb_car);
   gen_random_list(S_queue, nb_car);
