@@ -19,7 +19,7 @@ void gen_random_list(int *array, int n) {
 }
 
 SC_MODULE(Generator) {
-  sc_out<int> o_p;
+  sc_out<int> o_p{"gen_out"};
   int C_queue [100];
 
   void gen_thread() {
