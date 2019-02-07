@@ -1,8 +1,8 @@
 # The final executable
-PROGRAM = generator.x
+PROGRAM = main.x
 
 # The source files (*.cc)
-SRCS = generator.cc
+SRCS = sensor.cc generator.cc main.cc
 
 ##################################
 ## DO NOT CHANGE ANYTHING BELOW ##
@@ -12,7 +12,7 @@ SYSTEMC = /courses/TDTS07/sw/systemc
 TARGET_ARCH = linux64
 
 LIBDIR = -L. -L.. -L$(SYSTEMC)/lib-$(TARGET_ARCH)
-LIBS = -Wl,-Bstatic -lsystemc -Wl,-Bdynamic -lm -lpthread
+LIBS = -Wl,-Bstatic -Wl,-Bdynamic -lm -lpthread -lsystemc
 LDFLAGS = -g
 
 CC = g++-4.8
