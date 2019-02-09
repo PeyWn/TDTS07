@@ -11,8 +11,11 @@ SC_MODULE(Generator) {
 
   SC_HAS_PROCESS(Generator);
   Generator(sc_module_name name);
+  ~Generator();
   void gen_thread();
   void print_method();
+
+  ifstream *in;
 
 };
 
