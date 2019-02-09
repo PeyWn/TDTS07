@@ -4,7 +4,7 @@
 #include <systemc.h>
 
 SC_MODULE(Sensor) {
-  sc_in<bool> C_i_p, TL_i_p; // i_p --> Input port
+  sc_in<bool> G_i_p, TL_i_p; // i_p --> Input port
   sc_out<bool> S_o_p;
   sc_event print_ev;
 

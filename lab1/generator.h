@@ -6,7 +6,6 @@
 #include <fstream>
 
 using std::ifstream;
-int nb_car = 100;
 
 SC_MODULE(Generator) {
   sc_out<bool> o_p;

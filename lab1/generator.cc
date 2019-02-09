@@ -14,6 +14,7 @@ Generator::Generator(sc_module_name name, char *datafile)
 
   SC_THREAD(gen_thread);
   SC_METHOD(print_method);
+  dont_initialize();
   sensitive << print_event;
   o_p.initialize(0);
 }
@@ -31,6 +32,7 @@ Generator::~Generator()
 
 void Generator::gen_thread() {
   int i = 0;
+  int nb_car = 100;
   for (;;) {
     wait(8, SC_SEC);
     print_event.notify();

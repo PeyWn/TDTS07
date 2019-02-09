@@ -17,32 +17,33 @@ int sc_main(int argc, char **argv) {
   char *eastfile = argv[5];
   char *outfile = argv[6];
 
-  sc_signal<bool> N_o_sig, S_o_sig, E_o_sig, W_o_sig;
+  // N<orth>G<enerator>_Sig<nal>
+  sc_signal<bool> NG_sig, SG_sig, EG_sig, WG_sig;
+  // N<orth>T<raffic>L<light>_Sig<nal>
+  sc_signal<bool> NTL_sig, STL_sig, ETL_sig, WTL_sig;
+  // N<orth>S<ensor>_Sig<nal>
+  sc_signal<bool> NS_sig, SS_sig, ES_sig, WS_sig;
 
   Generator gen_north("North_traffic_generator", northfile);
-  gen_north(N_o_sig);
+  gen_north(NG_sig);
 
   Generator gen_south("South_traffic_generator", southfile);
-  gen_south(S_o_sig);
+  gen_south(SG_sig);
 
   Generator gen_west("West_traffic_generator ", westfile);
-  gen_west(W_o_sig);
+  gen_west(WG_sig);
 
   Generator gen_east("East_traffic_generator ", eastfile);
-  gen_east(E_o_sig);
+  gen_east(EG_sig);
 
-
-  /*
   Sensor sensor_north("North_traffic_Sensor");
-  sensor_north(N_o_sig);
+  sensor_north(NG_sig, NTL_sig, NS_sig);
   Sensor sensor_south("South_traffic_Sensor");
-  sensor_north(S_o_sig);
+  sensor_south(SG_sig, STL_sig, SS_sig);
   Sensor sensor_west("West_traffic_Sensor");
-  sensor_north(W_o_sig);
+  sensor_west(WG_sig, WTL_sig, WS_sig);
   Sensor sensor_east("East_traffic_Sensor");
-  sensor_north(E_o_sig);
-  */
-
+  sensor_east(EG_sig, ETL_sig, ES_sig);
 
   sc_start(sim_time);
   return 0;

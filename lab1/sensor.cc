@@ -8,7 +8,7 @@ Sensor::Sensor(sc_module_name name)
 
 
   SC_THREAD(sensor_thread);
-  sensitive << C_i_p << TL_i_p;
+  sensitive << G_i_p << TL_i_p;
 
   SC_METHOD(print_method);
   dont_initialize();
@@ -17,22 +17,20 @@ Sensor::Sensor(sc_module_name name)
 }
 
 void Sensor::print_method() {
-
+  const char* module_name = sc_core::sc_get_current_process_b()->get_parent()->basename();
+  cout << "Cars in sensor " << module_name << ": " << cars << endl;
 }
 
 void Sensor::sensor_thread() {
-
-  for (;;) {
-
-    if (C_i_p->read())
-      cars++;
-    if (TL_i_p->read())
-      //TODO one car per 2 seconds
-      cars--;
-    if (cars)
-      S_o_p = true;
-    else
-      S_o_p = false;
-
-  }
+  if (G_i_p->read())
+    cars++;
+    print_ev.notify();
+  if (TL_i_p->read())
+    wait(2, SC_SEC);
+    cars--;
+    print_ev.notify();
+  if (cars)
+    S_o_p->write(true);
+  else
+    S_o_p->write(false);
 }
