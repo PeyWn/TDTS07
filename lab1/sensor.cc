@@ -5,6 +5,7 @@ Sensor::Sensor(sc_module_name name)
 {
   S_o_p.initialize(0);
 
+  int cars = 0;
   SC_METHOD(sensor_method);
   sensitive << C_i_p << TL_i_p;
 
@@ -19,12 +20,13 @@ void Sensor::print_method() {
 }
 
 void Sensor::sensor_method() {
-  int cars;
+
   for (;;) {
 
     if (C_i_p->read())
       cars++;
     if (TL_i_p->read())
+      //TODO one car per 2 seconds
       cars--;
     if (cars)
       S_o_p = true;
