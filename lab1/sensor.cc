@@ -1,11 +1,12 @@
 #include "sensor.h"
+int cars = 0;
 
 Sensor::Sensor(sc_module_name name)
   : sc_module(name)
 {
   S_o_p.initialize(0);
 
-  int cars = 0;
+
   SC_METHOD(sensor_method);
   sensitive << C_i_p << TL_i_p;
 
