@@ -7,7 +7,7 @@ Sensor::Sensor(sc_module_name name)
   S_o_p.initialize(0);
 
 
-  SC_METHOD(sensor_method);
+  SC_THREAD(sensor_thread);
   sensitive << C_i_p << TL_i_p;
 
   SC_METHOD(print_method);
@@ -20,7 +20,7 @@ void Sensor::print_method() {
 
 }
 
-void Sensor::sensor_method() {
+void Sensor::sensor_thread() {
 
   for (;;) {
 

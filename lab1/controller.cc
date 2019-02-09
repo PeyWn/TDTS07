@@ -13,12 +13,12 @@ Controller::Controller(sc_module_name name)
   S_o_p.initialize(0);
   W_o_p.initialize(0);
 
-  SC_METHOD(controller_method);
+  SC_THREAD(controller_thread);
   sensitive << N_i_p, S_i_p, E_i_p, W_i_p;
 
 }
 
-void Controller::controller_method() {
+void Controller::controller_thread() {
 
   for(;;) {
     switch (currentState) {

@@ -15,7 +15,7 @@ SC_MODULE(Controller) {
   SC_HAS_PROCESS(Controller);
   Controller(sc_module_name name);
 
-  void controller_method();
+  void controller_thread();
   void print_method();
 };
 
