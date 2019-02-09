@@ -2,7 +2,7 @@
 PROGRAM = main.x
 
 # The source files (*.cc)
-SRCS = sensor.cc generator.cc main.cc
+SRCS = sensor.cc generator.cc controller.cc main.cc
 
 ##################################
 ## DO NOT CHANGE ANYTHING BELOW ##
