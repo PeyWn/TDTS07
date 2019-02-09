@@ -16,6 +16,7 @@ SC_MODULE(Controller) {
   Controller(sc_module_name name);
 
   void controller_method();
-}
+  void print_method();
+};
 
 #endif
