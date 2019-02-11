@@ -194,25 +194,46 @@ void Controller::controller_thread() {
 void Controller::print_method() {
   switch (currentState) {
     case ControllerState::WEST_BOUND:
-      cout << sc_time_stamp() <<" ControllerState West" << endl;
+      cout << "   -   " << endl;
+      cout << " *   - " << endl;
+      cout << "   _   " << endl;
+      cout << endl;
       break;
     case ControllerState::EAST_BOUND:
-      cout << sc_time_stamp() <<" ControllerState East" << endl;
+      cout << "   -   " << endl;
+      cout << " -   * " << endl;
+      cout << "   _   " << endl;
+      cout << endl;
       break;
     case ControllerState::EAST_AND_WEST_BOUND:
-      cout << sc_time_stamp() <<" ControllerState East and West" << endl;
+      cout << "   -   " << endl;
+      cout << " *   * " << endl;
+      cout << "   _   " << endl;
+      cout << endl;
       break;
     case ControllerState::SOUTH_BOUND:
-      cout << sc_time_stamp() <<" ControllerState South" << endl;
+      cout << "   -   " << endl;
+      cout << " -   - " << endl;
+      cout << "   *   " << endl;
+      cout << endl;
       break;
     case ControllerState::NORTH_BOUND:
-      cout << sc_time_stamp() <<" ControllerState North" << endl;
+      cout << "   *   " << endl;
+      cout << " -   - " << endl;
+      cout << "   _   " << endl;
+      cout << endl;
       break;
     case ControllerState::NORTH_AND_SOUTH_BOUND:
-      cout << sc_time_stamp() <<" ControllerState North and South" << endl;
+      cout << "   *   " << endl;
+      cout << " -   - " << endl;
+      cout << "   *   " << endl;
+      cout << endl;
       break;
     case ControllerState::NONE:
-      cout << sc_time_stamp() <<" ControllerState None" << endl;
+      cout << "   -   " << endl;
+      cout << " -   - " << endl;
+      cout << "   _   " << endl;
+      cout << endl;
       break;
   }
 }
