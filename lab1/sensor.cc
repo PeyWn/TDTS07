@@ -1,13 +1,14 @@
 #include "sensor.h"
-int cars = 0;
+using std::cout;
+using std::endl;
 
 Sensor::Sensor(sc_module_name name)
   : sc_module(name)
 {
   S_o_p.initialize(0);
 
-
   SC_THREAD(sensor_thread);
+  dont_initialize();
   sensitive << G_i_p << TL_i_p;
 
   SC_METHOD(print_method);
@@ -18,11 +19,13 @@ Sensor::Sensor(sc_module_name name)
 
 void Sensor::print_method() {
   const char* module_name = sc_core::sc_get_current_process_b()->get_parent()->basename();
-  cout << "Cars in sensor " << module_name << ": " << cars << endl;
+  cout << sc_time_stamp() << ": Cars in sensor " << module_name << ": " << cars << endl;
 }
 
 void Sensor::sensor_thread() {
-  for(;;){
+  cars = 0;
+  for (;;) {
+    wait(8, SC_SEC);
     if (G_i_p->read()){
       cars++;
       print_ev.notify();

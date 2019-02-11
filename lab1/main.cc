@@ -26,13 +26,10 @@ int sc_main(int argc, char **argv) {
 
   Generator gen_north("North_traffic_generator", northfile);
   gen_north(NG_sig);
-
   Generator gen_south("South_traffic_generator", southfile);
   gen_south(SG_sig);
-
   Generator gen_west("West_traffic_generator ", westfile);
   gen_west(WG_sig);
-
   Generator gen_east("East_traffic_generator ", eastfile);
   gen_east(EG_sig);
 
