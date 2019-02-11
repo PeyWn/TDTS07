@@ -22,6 +22,7 @@ void Sensor::print_method() {
 }
 
 void Sensor::sensor_thread() {
+  for(;;){
     if (G_i_p->read()){
       cars++;
       print_ev.notify();
@@ -37,5 +38,6 @@ void Sensor::sensor_thread() {
       S_o_p->write(true);
     else
       S_o_p->write(false);
+  }
 }
 
