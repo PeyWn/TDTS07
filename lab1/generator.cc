@@ -15,7 +15,7 @@ Generator::Generator(sc_module_name name, char *datafile)
   SC_THREAD(gen_thread);
   SC_METHOD(print_method);
   dont_initialize();
-  sensitive << print_event;
+  //sensitive << print_event;
   o_p.initialize(0);
 }
 

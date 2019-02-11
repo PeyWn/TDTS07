@@ -13,6 +13,9 @@ Controller::Controller(sc_module_name name)
   S_o_p.initialize(0);
   W_o_p.initialize(0);
 
+
+  SC_METHOD(print_method);
+  sensitive << print_event;
   SC_THREAD(controller_thread);
   sensitive << N_i_p, S_i_p, E_i_p, W_i_p;
 
@@ -21,9 +24,12 @@ Controller::Controller(sc_module_name name)
 void Controller::controller_thread() {
 
   for(;;) {
+    wait(8, SC_SEC);
+    print_event.notify();
     switch (currentState) {
       case ControllerState::WEST_BOUND:
         W_o_p->write(true);
+        wait(8, SC_SEC);
 
         if (E_i_p->read())
           currentState = ControllerState::EAST_AND_WEST_BOUND;
@@ -46,6 +52,7 @@ void Controller::controller_thread() {
 
       case ControllerState::EAST_BOUND:
         E_o_p->write(true);
+        wait(8, SC_SEC);
 
         if (W_i_p->read())
           currentState = ControllerState::EAST_AND_WEST_BOUND;
@@ -69,6 +76,7 @@ void Controller::controller_thread() {
       case ControllerState::EAST_AND_WEST_BOUND:
         E_o_p->write(true);
         W_o_p->write(true);
+        wait(8, SC_SEC);
 
         if (N_i_p->read()) {
           wait(12, SC_SEC);
@@ -100,6 +108,7 @@ void Controller::controller_thread() {
 
       case ControllerState::SOUTH_BOUND:
         S_o_p->write(true);
+        wait(8, SC_SEC);
 
         if (N_i_p->read())
           currentState = ControllerState::NORTH_AND_SOUTH_BOUND;
@@ -121,6 +130,7 @@ void Controller::controller_thread() {
 
       case ControllerState::NORTH_BOUND:
         N_o_p->write(true);
+        wait(8, SC_SEC);
 
         if (S_i_p->read())
           currentState = ControllerState::NORTH_AND_SOUTH_BOUND;
@@ -144,6 +154,7 @@ void Controller::controller_thread() {
       case ControllerState::NORTH_AND_SOUTH_BOUND:
         N_o_p->write(true);
         S_o_p->write(true);
+        wait(8, SC_SEC);
 
         if (E_i_p->read()) {
           wait(12, SC_SEC);
@@ -190,25 +201,25 @@ void Controller::controller_thread() {
 void Controller::print_method() {
   switch (currentState) {
     case ControllerState::WEST_BOUND:
-      cout << "ControllerState West" << endl;
+      cout << sc_time_stamp() <<" ControllerState West" << endl;
       break;
     case ControllerState::EAST_BOUND:
-      cout << "ControllerState East" << endl;
+      cout << sc_time_stamp() <<" ControllerState East" << endl;
       break;
     case ControllerState::EAST_AND_WEST_BOUND:
-      cout << "ControllerState East and West" << endl;
+      cout << sc_time_stamp() <<" ControllerState East and West" << endl;
       break;
     case ControllerState::SOUTH_BOUND:
-      cout << "ControllerState South" << endl;
+      cout << sc_time_stamp() <<" ControllerState South" << endl;
       break;
     case ControllerState::NORTH_BOUND:
-      cout << "ControllerState North" << endl;
+      cout << sc_time_stamp() <<" ControllerState North" << endl;
       break;
     case ControllerState::NORTH_AND_SOUTH_BOUND:
-      cout << "ControllerState North and South" << endl;
+      cout << sc_time_stamp() <<" ControllerState North and South" << endl;
       break;
     case ControllerState::NONE:
-      cout << "ControllerState None" << endl;
+      cout << sc_time_stamp() <<" ControllerState None" << endl;
       break;
   }
 }

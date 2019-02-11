@@ -26,21 +26,22 @@ void Sensor::sensor_thread() {
   cars = 0;
   for (;;) {
     wait(8, SC_SEC);
-    if (G_i_p->read()){
+
+    if (!cars == 0)
+      S_o_p->write(true);
+    else
+      S_o_p->write(false);
+
+    if (G_i_p->read()) {
       cars++;
       print_ev.notify();
     }
 
-    if (TL_i_p->read()) {
+    if (TL_i_p->read() && !cars == 0) {
       wait(2, SC_SEC);
       cars--;
       print_ev.notify();
     }
 
-    if (cars)
-      S_o_p->write(true);
-    else
-      S_o_p->write(false);
   }
 }
-

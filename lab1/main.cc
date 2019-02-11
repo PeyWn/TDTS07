@@ -1,5 +1,6 @@
 #include <systemc.h>
 #include "generator.h"
+#include "controller.h"
 #include "sensor.h"
 
 int sc_main(int argc, char **argv) {
@@ -41,6 +42,9 @@ int sc_main(int argc, char **argv) {
   sensor_west(WG_sig, WTL_sig, WS_sig);
   Sensor sensor_east("East_traffic_Sensor");
   sensor_east(EG_sig, ETL_sig, ES_sig);
+
+  Controller traffic_light("Traffic light");
+  traffic_light(NS_sig, SS_sig, ES_sig, WS_sig, NTL_sig, STL_sig, ETL_sig, WTL_sig);
 
   sc_start(sim_time);
   return 0;
