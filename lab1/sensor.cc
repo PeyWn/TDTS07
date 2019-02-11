@@ -22,15 +22,20 @@ void Sensor::print_method() {
 }
 
 void Sensor::sensor_thread() {
-  if (G_i_p->read())
-    cars++;
-    print_ev.notify();
-  if (TL_i_p->read())
-    wait(2, SC_SEC);
-    cars--;
-    print_ev.notify();
-  if (cars)
-    S_o_p->write(true);
-  else
-    S_o_p->write(false);
+    if (G_i_p->read()){
+      cars++;
+      print_ev.notify();
+    }
+
+    if (TL_i_p->read()) {
+      wait(2, SC_SEC);
+      cars--;
+      print_ev.notify();
+    }
+
+    if (cars)
+      S_o_p->write(true);
+    else
+      S_o_p->write(false);
 }
+
