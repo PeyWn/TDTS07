@@ -97,12 +97,82 @@ void Controller::controller_thread() {
         }
         break;
 
+
       case ControllerState::SOUTH_BOUND:
+        S_o_p->write(true);
+
+        if (N_i_p->read())
+          currentState = ControllerState::NORTH_AND_SOUTH_BOUND;
+        else if (E_i_p->read()) {
+          wait(12, SC_SEC);
+          S_o_p->write(false);
+          currentState = ControllerState::EAST_BOUND;
+        }
+        else if (W_i_p->read()) {
+          wait(12, SC_SEC);
+          S_o_p->write(false);
+          currentState = ControllerState::WEST_BOUND;
+        }
+        else if (!S_i_p->read()) {
+          S_o_p->write(false);
+          currentState = ControllerState::NONE;
+        }
         break;
+
       case ControllerState::NORTH_BOUND:
+        N_o_p->write(true);
+
+        if (S_i_p->read())
+          currentState = ControllerState::NORTH_AND_SOUTH_BOUND;
+        else if (E_i_p->read()) {
+          wait(12, SC_SEC);
+          N_o_p->write(false);
+          currentState = ControllerState::EAST_BOUND;
+        }
+        else if (W_i_p->read()) {
+          wait(12, SC_SEC);
+          N_o_p->write(false);
+          currentState = ControllerState::WEST_BOUND;
+        }
+        else if (!N_i_p->read()) {
+          N_o_p->write(false);
+          currentState = ControllerState::NONE;
+        }
         break;
+
+
       case ControllerState::NORTH_AND_SOUTH_BOUND:
+        N_o_p->write(true);
+        S_o_p->write(true);
+
+        if (E_i_p->read()) {
+          wait(12, SC_SEC);
+          N_o_p->write(false);
+          S_o_p->write(false);
+          currentState = ControllerState::EAST_BOUND;
+        }
+        else if (W_i_p->read()) {
+          wait(12, SC_SEC);
+          N_o_p->write(false);
+          S_o_p->write(false);
+          currentState = ControllerState::WEST_BOUND;
+        }
+        else if (!N_o_p->read() && S_o_p->read()) {
+          N_o_p->write(false);
+          currentState = ControllerState::SOUTH_BOUND;
+        }
+        else if (!S_o_p->read() && N_o_p->read()) {
+          S_o_p->write(false);
+          currentState = ControllerState::NORTH_BOUND;
+        }
+        else if (!N_o_p->read() && !S_o_p->read()) {
+          N_o_p->write(false);
+          S_o_p->write(false);
+          currentState = ControllerState::NONE;
+        }
         break;
+
+
       case ControllerState::NONE:
         if (N_i_p->read())
           currentState = ControllerState::NORTH_BOUND;
