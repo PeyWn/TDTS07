@@ -13,12 +13,12 @@ Generator::Generator(sc_module_name name, char *datafile)
   assert(*in);                 // Check that everything is OK.
 
   i = 0;
-  nb_car = 100;
+  nb_car = 1;
 
   SC_THREAD(gen_thread);
   SC_METHOD(print_method);
   dont_initialize();
-  sensitive << print_event;
+  //sensitive << print_event;
   o_p.initialize(0);
 }
 
