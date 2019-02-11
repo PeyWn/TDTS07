@@ -196,19 +196,19 @@ void Controller::print_method() {
     case ControllerState::WEST_BOUND:
       cout << "   -   " << endl;
       cout << " *   - " << endl;
-      cout << "   _   " << endl;
+      cout << "   -   " << endl;
       cout << endl;
       break;
     case ControllerState::EAST_BOUND:
       cout << "   -   " << endl;
       cout << " -   * " << endl;
-      cout << "   _   " << endl;
+      cout << "   -   " << endl;
       cout << endl;
       break;
     case ControllerState::EAST_AND_WEST_BOUND:
       cout << "   -   " << endl;
       cout << " *   * " << endl;
-      cout << "   _   " << endl;
+      cout << "   -   " << endl;
       cout << endl;
       break;
     case ControllerState::SOUTH_BOUND:
@@ -220,7 +220,7 @@ void Controller::print_method() {
     case ControllerState::NORTH_BOUND:
       cout << "   *   " << endl;
       cout << " -   - " << endl;
-      cout << "   _   " << endl;
+      cout << "   -   " << endl;
       cout << endl;
       break;
     case ControllerState::NORTH_AND_SOUTH_BOUND:
@@ -232,7 +232,7 @@ void Controller::print_method() {
     case ControllerState::NONE:
       cout << "   -   " << endl;
       cout << " -   - " << endl;
-      cout << "   _   " << endl;
+      cout << "   -   " << endl;
       cout << endl;
       break;
   }
