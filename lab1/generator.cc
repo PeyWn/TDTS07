@@ -12,10 +12,13 @@ Generator::Generator(sc_module_name name, char *datafile)
   in = new ifstream(datafile); // Open the input file.
   assert(*in);                 // Check that everything is OK.
 
+  i = 0;
+  nb_car = 100;
+
   SC_THREAD(gen_thread);
   SC_METHOD(print_method);
   dont_initialize();
-  //sensitive << print_event;
+  sensitive << print_event;
   o_p.initialize(0);
 }
 
@@ -31,18 +34,21 @@ Generator::~Generator()
 }
 
 void Generator::gen_thread() {
-  int i = 0;
-  int nb_car = 100;
+
   for (;;) {
-    wait(8, SC_SEC);
-    print_event.notify();
+    wait(4, SC_SEC);
     *in >> C_queue[i];
-    if ( i < nb_car ) {
-      o_p->write(C_queue[i]);
+    if ( i < nb_car) {
+      if (C_queue[i])
+        o_p->write(true);
+      else
+        o_p->write(false);
       i++;
     }
     else{
       i = 0;
       }
+    wait(0, SC_SEC);
+    print_event.notify();
   }
 }

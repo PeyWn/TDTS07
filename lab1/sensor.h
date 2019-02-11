@@ -13,7 +13,8 @@ SC_MODULE(Sensor) {
   SC_HAS_PROCESS(Sensor);
   Sensor(sc_module_name name);
   void print_method();
-  void sensor_thread();
+  void sensor_increment_method();
+  void sensor_decrement_thread();
 
 };
 

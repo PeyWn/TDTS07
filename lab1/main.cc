@@ -29,18 +29,18 @@ int sc_main(int argc, char **argv) {
   gen_north(NG_sig);
   Generator gen_south("South_traffic_generator", southfile);
   gen_south(SG_sig);
-  Generator gen_west("West_traffic_generator ", westfile);
+  Generator gen_west("West__traffic_generator", westfile);
   gen_west(WG_sig);
-  Generator gen_east("East_traffic_generator ", eastfile);
+  Generator gen_east("East__traffic_generator", eastfile);
   gen_east(EG_sig);
 
   Sensor sensor_north("North_traffic_Sensor");
   sensor_north(NG_sig, NTL_sig, NS_sig);
   Sensor sensor_south("South_traffic_Sensor");
   sensor_south(SG_sig, STL_sig, SS_sig);
-  Sensor sensor_west("West_traffic_Sensor");
+  Sensor sensor_west("West__traffic_Sensor");
   sensor_west(WG_sig, WTL_sig, WS_sig);
-  Sensor sensor_east("East_traffic_Sensor");
+  Sensor sensor_east("East__traffic_Sensor");
   sensor_east(EG_sig, ETL_sig, ES_sig);
 
   Controller traffic_light("Traffic light");

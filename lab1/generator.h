@@ -12,6 +12,9 @@ SC_MODULE(Generator) {
   int C_queue [100];
   sc_event print_event;
 
+  int i;
+  int nb_car;
+
   SC_HAS_PROCESS(Generator);
   Generator(sc_module_name name, char *datafile);
   ~Generator();

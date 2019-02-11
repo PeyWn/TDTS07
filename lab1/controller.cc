@@ -17,29 +17,27 @@ Controller::Controller(sc_module_name name)
   SC_METHOD(print_method);
   sensitive << print_event;
   SC_THREAD(controller_thread);
-  sensitive << N_i_p, S_i_p, E_i_p, W_i_p;
 
 }
 
 void Controller::controller_thread() {
 
   for(;;) {
-    wait(8, SC_SEC);
+    wait(4, SC_SEC);
     print_event.notify();
     switch (currentState) {
       case ControllerState::WEST_BOUND:
         W_o_p->write(true);
-        wait(8, SC_SEC);
 
         if (E_i_p->read())
           currentState = ControllerState::EAST_AND_WEST_BOUND;
         else if (N_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           W_o_p->write(false);
           currentState = ControllerState::NORTH_BOUND;
         }
         else if (S_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           W_o_p->write(false);
           currentState = ControllerState::SOUTH_BOUND;
         }
@@ -52,17 +50,16 @@ void Controller::controller_thread() {
 
       case ControllerState::EAST_BOUND:
         E_o_p->write(true);
-        wait(8, SC_SEC);
 
         if (W_i_p->read())
           currentState = ControllerState::EAST_AND_WEST_BOUND;
         else if (N_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           E_o_p->write(false);
           currentState = ControllerState::NORTH_BOUND;
         }
         else if (S_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           E_o_p->write(false);
           currentState = ControllerState::SOUTH_BOUND;
         }
@@ -76,16 +73,15 @@ void Controller::controller_thread() {
       case ControllerState::EAST_AND_WEST_BOUND:
         E_o_p->write(true);
         W_o_p->write(true);
-        wait(8, SC_SEC);
 
         if (N_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           W_o_p->write(false);
           E_o_p->write(false);
           currentState = ControllerState::NORTH_BOUND;
         }
         else if (S_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           W_o_p->write(false);
           E_o_p->write(false);
           currentState = ControllerState::SOUTH_BOUND;
@@ -108,17 +104,16 @@ void Controller::controller_thread() {
 
       case ControllerState::SOUTH_BOUND:
         S_o_p->write(true);
-        wait(8, SC_SEC);
 
         if (N_i_p->read())
           currentState = ControllerState::NORTH_AND_SOUTH_BOUND;
         else if (E_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           S_o_p->write(false);
           currentState = ControllerState::EAST_BOUND;
         }
         else if (W_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           S_o_p->write(false);
           currentState = ControllerState::WEST_BOUND;
         }
@@ -130,17 +125,16 @@ void Controller::controller_thread() {
 
       case ControllerState::NORTH_BOUND:
         N_o_p->write(true);
-        wait(8, SC_SEC);
 
         if (S_i_p->read())
           currentState = ControllerState::NORTH_AND_SOUTH_BOUND;
         else if (E_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           N_o_p->write(false);
           currentState = ControllerState::EAST_BOUND;
         }
         else if (W_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           N_o_p->write(false);
           currentState = ControllerState::WEST_BOUND;
         }
@@ -154,16 +148,15 @@ void Controller::controller_thread() {
       case ControllerState::NORTH_AND_SOUTH_BOUND:
         N_o_p->write(true);
         S_o_p->write(true);
-        wait(8, SC_SEC);
 
         if (E_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           N_o_p->write(false);
           S_o_p->write(false);
           currentState = ControllerState::EAST_BOUND;
         }
         else if (W_i_p->read()) {
-          wait(12, SC_SEC);
+          wait(2, SC_SEC);
           N_o_p->write(false);
           S_o_p->write(false);
           currentState = ControllerState::WEST_BOUND;
