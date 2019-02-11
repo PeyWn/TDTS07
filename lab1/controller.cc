@@ -86,15 +86,15 @@ void Controller::controller_thread() {
           E_o_p->write(false);
           currentState = ControllerState::SOUTH_BOUND;
         }
-        else if (!E_o_p->read() && W_o_p->read()) {
+        else if (!E_i_p->read() && W_i_p->read()) {
           E_o_p->write(false);
           currentState = ControllerState::WEST_BOUND;
         }
-        else if (!W_o_p->read() && E_o_p->read()) {
+        else if (!W_i_p->read() && E_i_p->read()) {
           W_o_p->write(false);
           currentState = ControllerState::EAST_BOUND;
         }
-        else if (!W_o_p->read() && !E_o_p->read()) {
+        else if (!W_i_p->read() && !E_i_p->read()) {
           W_o_p->write(false);
           E_o_p->write(false);
           currentState = ControllerState::NONE;
@@ -161,15 +161,15 @@ void Controller::controller_thread() {
           S_o_p->write(false);
           currentState = ControllerState::WEST_BOUND;
         }
-        else if (!N_o_p->read() && S_o_p->read()) {
+        else if (!N_i_p->read() && S_i_p->read()) {
           N_o_p->write(false);
           currentState = ControllerState::SOUTH_BOUND;
         }
-        else if (!S_o_p->read() && N_o_p->read()) {
+        else if (!S_i_p->read() && N_i_p->read()) {
           S_o_p->write(false);
           currentState = ControllerState::NORTH_BOUND;
         }
-        else if (!N_o_p->read() && !S_o_p->read()) {
+        else if (!N_i_p->read() && !S_i_p->read()) {
           N_o_p->write(false);
           S_o_p->write(false);
           currentState = ControllerState::NONE;
