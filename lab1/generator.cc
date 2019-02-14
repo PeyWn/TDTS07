@@ -15,7 +15,8 @@ Generator::Generator(sc_module_name name, char *datafile)
   i = 0;
   nb_car = 1;
 
-  SC_THREAD(gen_thread);
+  SC_THREAD(event_creator);
+  SC_METHOD(gen_method);
   SC_METHOD(print_method);
   dont_initialize();
   //sensitive << print_event;
@@ -33,22 +34,26 @@ Generator::~Generator()
   delete in;
 }
 
-void Generator::gen_thread() {
-
-  for (;;) {
-    wait(4, SC_SEC);
-    *in >> C_queue[i];
-    if ( i < nb_car) {
-      if (C_queue[i])
-        o_p->write(true);
-      else
-        o_p->write(false);
-      i++;
+void Generator::gen_method() {
+  wait(4, SC_SEC);
+  *in >> C_queue[i];
+  if ( i < nb_car) {
+    if (C_queue[i])
+      o_p->write(true);
+    else
+      o_p->write(false);
+    i++;
+  }
+  else{
+    i = 0;
     }
-    else{
-      i = 0;
-      }
-    wait(0, SC_SEC);
-    print_event.notify();
+  wait(0, SC_SEC);
+  print_event.notify();
+}
+
+void Generator::event_creator() {
+  for(;;) {
+    wait(4, SC_SEC);
+    gen_event.notify();
   }
 }
