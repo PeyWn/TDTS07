@@ -27,9 +27,9 @@ void Sensor::print_method() {
 
 void Sensor::sensor_increment_method() {
   cars++;
-  const char* module_name = sc_core::sc_get_current_process_b()->get_parent()->basename();
-  cout << sc_time_stamp() << ": Cars in sensor incre " << module_name << ": " << cars << endl;
-  //print_ev.notify();
+  //const char* module_name = sc_core::sc_get_current_process_b()->get_parent()->basename();
+  //cout << sc_time_stamp() << ": Cars in sensor incre " << module_name << ": " << cars << endl;
+  print_ev.notify();
 }
 
 void Sensor::sensor_decrement_thread() {
@@ -42,9 +42,9 @@ void Sensor::sensor_decrement_thread() {
 
     if (!cars == 0 && TL_i_p->read()) {
       cars--;
-      const char* module_name = sc_core::sc_get_current_process_b()->get_parent()->basename();
-      cout << sc_time_stamp() << ": Cars in sensor decre " << module_name << ": " << cars << endl;
-      //print_ev.notify();
+      //const char* module_name = sc_core::sc_get_current_process_b()->get_parent()->basename();
+      //cout << sc_time_stamp() << ": Cars in sensor decre " << module_name << ": " << cars << endl;
+      print_ev.notify();
     }
 
   }

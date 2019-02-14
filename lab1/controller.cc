@@ -24,26 +24,31 @@ void Controller::controller_thread() {
 
   for(;;) {
     wait(100, SC_MS);
-    //print_event.notify();
+
     switch (currentState) {
       case ControllerState::WEST:
         W_o_p->write(true);
 
-        if (E_i_p->read())
+        if (E_i_p->read()) {
           currentState = ControllerState::EAST_AND_WEST;
+          print_event.notify();
+        }
         else if (N_i_p->read()) {
           wait(6, SC_SEC);
           W_o_p->write(false);
           currentState = ControllerState::NORTH;
+          print_event.notify();
         }
         else if (S_i_p->read()) {
           wait(6, SC_SEC);
           W_o_p->write(false);
           currentState = ControllerState::SOUTH;
+          print_event.notify();
         }
         else if (!W_i_p->read()) {
           W_o_p->write(false);
           currentState = ControllerState::NONE;
+          print_event.notify();
         }
         break;
 
@@ -51,21 +56,26 @@ void Controller::controller_thread() {
       case ControllerState::EAST:
         E_o_p->write(true);
 
-        if (W_i_p->read())
+        if (W_i_p->read()) {
           currentState = ControllerState::EAST_AND_WEST;
+          print_event.notify();
+        }
         else if (N_i_p->read()) {
           wait(6, SC_SEC);
           E_o_p->write(false);
           currentState = ControllerState::NORTH;
+          print_event.notify();
         }
         else if (S_i_p->read()) {
           wait(6, SC_SEC);
           E_o_p->write(false);
           currentState = ControllerState::SOUTH;
+          print_event.notify();
         }
         else if (!E_i_p->read()) {
           E_o_p->write(false);
           currentState = ControllerState::NONE;
+          print_event.notify();
         }
         break;
 
@@ -79,25 +89,30 @@ void Controller::controller_thread() {
           W_o_p->write(false);
           E_o_p->write(false);
           currentState = ControllerState::NORTH;
+          print_event.notify();
         }
         else if (S_i_p->read()) {
           wait(6, SC_SEC);
           W_o_p->write(false);
           E_o_p->write(false);
           currentState = ControllerState::SOUTH;
+          print_event.notify();
         }
         else if (!E_i_p->read() && W_i_p->read()) {
           E_o_p->write(false);
           currentState = ControllerState::WEST;
+          print_event.notify();
         }
         else if (!W_i_p->read() && E_i_p->read()) {
           W_o_p->write(false);
           currentState = ControllerState::EAST;
+          print_event.notify();
         }
         else if (!W_i_p->read() && !E_i_p->read()) {
           W_o_p->write(false);
           E_o_p->write(false);
           currentState = ControllerState::NONE;
+          print_event.notify();
         }
         break;
 
@@ -105,42 +120,52 @@ void Controller::controller_thread() {
       case ControllerState::SOUTH:
         S_o_p->write(true);
 
-        if (N_i_p->read())
+        if (N_i_p->read()) {
           currentState = ControllerState::NORTH_AND_SOUTH;
+          print_event.notify();
+        }
         else if (E_i_p->read()) {
           wait(6, SC_SEC);
           S_o_p->write(false);
           currentState = ControllerState::EAST;
+          print_event.notify();
         }
         else if (W_i_p->read()) {
           wait(6, SC_SEC);
           S_o_p->write(false);
           currentState = ControllerState::WEST;
+          print_event.notify();
         }
         else if (!S_i_p->read()) {
           S_o_p->write(false);
           currentState = ControllerState::NONE;
+          print_event.notify();
         }
         break;
 
       case ControllerState::NORTH:
         N_o_p->write(true);
 
-        if (S_i_p->read())
+        if (S_i_p->read()) {
           currentState = ControllerState::NORTH_AND_SOUTH;
+          print_event.notify();
+        }
         else if (E_i_p->read()) {
           wait(6, SC_SEC);
           N_o_p->write(false);
           currentState = ControllerState::EAST;
+          print_event.notify();
         }
         else if (W_i_p->read()) {
           wait(6, SC_SEC);
           N_o_p->write(false);
           currentState = ControllerState::WEST;
+          print_event.notify();
         }
         else if (!N_i_p->read()) {
           N_o_p->write(false);
           currentState = ControllerState::NONE;
+          print_event.notify();
         }
         break;
 
@@ -154,25 +179,30 @@ void Controller::controller_thread() {
           N_o_p->write(false);
           S_o_p->write(false);
           currentState = ControllerState::EAST;
+          print_event.notify();
         }
         else if (W_i_p->read()) {
           wait(6, SC_SEC);
           N_o_p->write(false);
           S_o_p->write(false);
           currentState = ControllerState::WEST;
+          print_event.notify();
         }
         else if (!N_i_p->read() && S_i_p->read()) {
           N_o_p->write(false);
           currentState = ControllerState::SOUTH;
+          print_event.notify();
         }
         else if (!S_i_p->read() && N_i_p->read()) {
           S_o_p->write(false);
           currentState = ControllerState::NORTH;
+          print_event.notify();
         }
         else if (!N_i_p->read() && !S_i_p->read()) {
           N_o_p->write(false);
           S_o_p->write(false);
           currentState = ControllerState::NONE;
+          print_event.notify();
         }
         break;
 
