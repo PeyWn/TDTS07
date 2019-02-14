@@ -9,7 +9,7 @@ Sensor::Sensor(sc_module_name name)
   S_o_p.initialize(0);
 
   SC_METHOD(sensor_increment_method);
-  //dont_initialize();
+  dont_initialize();
   sensitive << G_i_p;
 
   SC_THREAD(sensor_decrement_thread);

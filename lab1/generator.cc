@@ -26,7 +26,7 @@ Generator::Generator(sc_module_name name, char *datafile)
   sensitive << gen_event;
   SC_METHOD(print_method);
   dont_initialize();
-  //sensitive << print_event;
+  sensitive << print_event;
   o_p.initialize(0);
 }
 
@@ -49,14 +49,12 @@ void Generator::gen_method() {
         o_p->write(true);
         toggle = !toggle;
       }
-
-    else {
-      o_p->write(false);
-      toggle = !toggle;
-
+      else {
+        o_p->write(false);
+        toggle = !toggle;
       }
-    i++;
     }
+    i++;
   }
 }
 
@@ -64,7 +62,7 @@ void Generator::event_creator() {
   for(;;) {
     wait(2, SC_SEC);
     gen_event.notify();
-    wait(0, SC_SEC);
-    print_event.notify();
+    //wait(0, SC_SEC);
+    //print_event.notify();
   }
 }
