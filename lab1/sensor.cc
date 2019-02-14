@@ -43,7 +43,7 @@ void Sensor::sensor_decrement_thread() {
       S_o_p->write(false);
 
     if (!cars == 0 && TL_i_p->read()) {
-      cars--;
+      //cars--;
       const char* module_name = sc_core::sc_get_current_process_b()->get_parent()->basename();
       cout << sc_time_stamp() << ": Cars in sensor decre " << module_name << ": " << cars << endl;
       //print_ev.notify();

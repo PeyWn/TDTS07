@@ -12,6 +12,7 @@ SC_MODULE(Generator) {
   int C_queue [100];
   sc_event print_event;
   sc_event gen_event;
+  std::string line;
 
   int i;
   int nb_car;
