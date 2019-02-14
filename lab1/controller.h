@@ -4,8 +4,8 @@
 #include <systemc.h>
 
 struct ControllerState{
-  enum Traffic {WEST_BOUND, EAST_BOUND, EAST_AND_WEST_BOUND,
-    SOUTH_BOUND, NORTH_BOUND, NORTH_AND_SOUTH_BOUND, NONE};
+  enum Traffic {WEST, EAST, EAST_AND_WEST,
+    SOUTH, NORTH, NORTH_AND_SOUTH, NONE};
 };
 
 SC_MODULE(Controller) {

@@ -13,16 +13,13 @@ Generator::Generator(sc_module_name name, char *datafile)
   assert(*in);                 // Check that everything is OK.
 
   i = 0;
+  toggle = true;
+  //srand(time(NULL)); //Init rand
+
   getline(*in, line);
   nb_car = atoi(line.c_str());
-  C_queue[nb_car];
-
   getline(*in, line);
-  for(int j = 0; j<nb_car; j++){
-    C_queue[j] = (int)line[j]%48;   //Convert char to int assign to C_queue
-  }
   in->close();
-
 
   SC_THREAD(event_creator);
   SC_METHOD(gen_method);
@@ -46,22 +43,26 @@ Generator::~Generator()
 
 void Generator::gen_method() {
   if ( i < nb_car) {
-    if (C_queue[i]) {
-      cout << C_queue[i];
-      o_p->write(true);
-    }
-    else
+    car = (int)line[i]%48; //rand()%14 then car <= 4 30% chance of generating a car
+    if (car == 1) {
+      if(toggle) {
+        o_p->write(true);
+        toggle = !toggle;
+      }
+
+    else {
       o_p->write(false);
+      toggle = !toggle;
+
+      }
     i++;
-  }
-  else{
-    i = 0;
     }
+  }
 }
 
 void Generator::event_creator() {
   for(;;) {
-    wait(4, SC_SEC);
+    wait(2, SC_SEC);
     gen_event.notify();
     wait(0, SC_SEC);
     print_event.notify();

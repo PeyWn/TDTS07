@@ -9,13 +9,14 @@ using std::ifstream;
 
 SC_MODULE(Generator) {
   sc_out<bool> o_p;
-  int C_queue [100];
   sc_event print_event;
   sc_event gen_event;
   std::string line;
 
-  int i;
+  unsigned long i;
   int nb_car;
+  int car;
+  bool toggle;
 
   SC_HAS_PROCESS(Generator);
   Generator(sc_module_name name, char *datafile);
