@@ -12,14 +12,8 @@ Generator::Generator(sc_module_name name, char *datafile)
   in = new ifstream(datafile); // Open the input file.
   assert(*in);                 // Check that everything is OK.
 
-  i = 0;
   toggle = true;
   srand(time(NULL)); //Init rand
-
-  getline(*in, line);
-  nb_car = atoi(line.c_str());
-  getline(*in, line);
-  in->close();
 
   SC_THREAD(event_creator);
   SC_METHOD(gen_method);
@@ -42,19 +36,16 @@ Generator::~Generator()
 }
 
 void Generator::gen_method() {
-  if ( i < nb_car) {
-    car = rand()%14; //car <= 4 30% chance of generating a car
-    if (car <= 4) {
-      if(toggle) {
-        o_p->write(true);
-        toggle = !toggle;
-      }
-      else {
-        o_p->write(false);
-        toggle = !toggle;
-      }
+  car = rand()%14; //car <= 4 30% chance of generating a car
+  if (car <= 4) {
+    if(toggle) {
+      o_p->write(true);
+      toggle = !toggle;
     }
-    i++;
+    else {
+      o_p->write(false);
+      toggle = !toggle;
+    }
   }
 }
 
