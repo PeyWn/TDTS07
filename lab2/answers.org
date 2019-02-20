@@ -22,6 +22,8 @@
     An exemple : (-,-,-,-) -> (req,-,-,-) -> (req,req,-,-) -> (wait,req,-,-) -> (cs,req,-,-) -> (cs,wait,-,-) -> (cs,cs,-,-)
    
    If m >= k then mutex requirment will be satisfied.
+   
+*** 3.4 Traffic Light Controller
 
    
    
