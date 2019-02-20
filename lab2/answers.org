@@ -18,10 +18,10 @@
     It seems to be a factorial increment of time.
     
 *** 3.3 Fisher 2
-    If m is less than k then it will be possible for two or more processes to go to the cs. If however m>=k then it will not be possible for multiple processes to be in the cs state at the same time. Due to the fact that the ID have been set in the process that made the cs transittion.
-    
-       
+    If m < k then the mutex requirment will not be satisfied.
+    An exemple : (-,-,-,-) -> (req,-,-,-) -> (req,req,-,-) -> (wait,req,-,-) -> (cs,req,-,-) -> (cs,wait,-,-) -> (cs,cs,-,-)
    
+   If m >= k then mutex requirment will be satisfied.
 
    
    
