@@ -18,11 +18,12 @@
     It seems to be a factorial increment of time.
     
 *** 3.3 Fisher 2
-
-    
-    
-       
+    If m < k then the mutex requirment will not be satisfied.
+    An exemple : (-,-,-,-) -> (req,-,-,-) -> (req,req,-,-) -> (wait,req,-,-) -> (cs,req,-,-) -> (cs,wait,-,-) -> (cs,cs,-,-)
    
+   If m >= k then mutex requirment will be satisfied.
+   
+*** 3.4 Traffic Light Controller
 
    
    
