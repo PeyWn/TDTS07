@@ -1,5 +1,5 @@
 ** Assignment 1
-*** 3.1
+*** 3.1 Getting started
 
    For the first query E<> P.s3 witch means that there exist a possible future where P.s3 holds. The result is that the property is satisfied witch is true since there is a possible sequence of state transitions leading form the initial state to s3.
    An example sequence : S0 -> S1 -> S3
@@ -7,8 +7,20 @@
    For the second query A<> P.s3 witch means that all possible sequence of states that eventually leads to P.s3. The property is not satisfied since there is no way to ensure that there is such a sequence. This is due to the fact that there is nothing forcing the states to change.
    An example sequence: S0     The state machine will stay in S0 for infinity. 
    
-*** 3.2
+*** 3.2 Fisher 1
 
+    n : 8     1s  
+    n : 9     2s
+    n : 10    6s
+    n : 11    20s  
+    n : 12    120s (Our guess) 
+
+    It seems to be a factorial increment of time.
+    
+*** 3.3 Fisher 2
+
+    
+    
        
    
 
