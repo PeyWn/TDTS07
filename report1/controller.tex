@@ -1,8 +1,19 @@
-\section{Section Name}
+\section{Controller module}
 % Write about the purpose of the Module
 % Explain the module signals
+The controller module contains all to the logic needed to control a traffic light in a four-way junction with traffic flowing in four directions. However does not support turning traffic, for example, a car can't go from north to west. The module has four input signals, one form each direction. This signal tells the controller if there are any cars waiting for a green light. There are also four boolean output signals to represent a green or red light. The controller has one thread and a print method. The print method is triggered by the tread and prints the current state of the traffic lights. The controller's thread is covered in greater detail in the next section. 
 
 
-\subsection{Function 1}
+
+\subsection{Controller Thread}
 %Purpose of function and why we implemented it in the way we did
 %Skip the print_method and write about it generally in the end.
+The controller thread contains a state machine with seven states. The states are ``\emph{WEST, EAST, EAST{\_}AND{\_}WEST, SOUTH, NORTH, NORTH{\_}AND{\_}SOUTH, NONE}''. These states each represents one or two traffic lights. There are states that enable green light for two directions at the same time. This is due to the fact that cars from the north and south or east and west doesn't cross each other's driving lanes. Thus there is no problem if both have a green light at the same time. The \emph{NONE} state is for when there is no cars.
+
+To transition between states the machine uses the input signal to check if there is cars waiting for a green light in any one of the four directions north, south, east and west in combination with some logic in the states. This logic for the states is described below. 
+
+A transition from one of the one-directional states can happen in one of four ways. First of if there are no more cars watching for green light the state machine will switch state to \emph{NONE}. Secondly, if there are one or more cars in the opposite direction the machine will switch state to the corresponding dual light state. This will keep the current green light green and switch the light for the opposite lane to green as well. The final two ways is if there is one or more cars waiting in either of the crossing directions. Then the machine will wait for six seconds, this enables at least three cars to cross before swishing the signals.
+
+The procedure for transitioning from a bidirectional state is largely the same. With one addition if there are no cars left waiting for a green light in any of the directions that the state represents the machine will switch to the correct one directional state. The criteria for switching to the \emph{NONE} state is also for there to be no cars in either of the directions of the state.
+
+The state machine is implemented using a systemC thread, this is so it can control the time that the output signals are high or low. This enables the state machine to stay in one state for a specific period of time. This is required for good traffic flow through the junction.
