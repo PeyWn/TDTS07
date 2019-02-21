@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
 int transit;
 bool north_cars, south_cars, east_cars, west_cars;
-bool north, south, east, west;</declaration><template><name x="5" y="5">TrafficLightNS</name><parameter>int id</parameter><declaration>// Place local declarations here.
-clock x;</declaration><location id="id0" x="504" y="72"><name x="488" y="40">Wait</name></location><location id="id1" x="504" y="224"><name x="480" y="240">Green</name><label kind="invariant" x="480" y="256">x &lt;= 10</label></location><location id="id2" x="688" y="152"><name x="678" y="122">Idle</name></location><init ref="id2"/><transition><source ref="id1"/><target ref="id2"/><label kind="assignment" x="576" y="208">transit -= id</label></transition><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="312" y="136">transit &lt; 4 || transit == 0</label><label kind="assignment" x="312" y="152">transit += id,
-x = 0</label></transition><transition><source ref="id2"/><target ref="id0"/><label kind="guard" x="576" y="64">x &gt;= 0</label><label kind="assignment" x="576" y="80">x = 0</label><nail x="600" y="112"/></transition></template><template><name x="5" y="5">TrafficLightWE</name><parameter>int id</parameter><declaration>// Place local declarations here.
-clock x;</declaration><location id="id3" x="504" y="72"><name x="488" y="40">Wait</name></location><location id="id4" x="504" y="224"><name x="480" y="240">Green</name><label kind="invariant" x="480" y="256">x &lt;= 10</label></location><location id="id5" x="688" y="152"><name x="678" y="122">Idle</name></location><init ref="id5"/><transition><source ref="id4"/><target ref="id5"/><label kind="assignment" x="576" y="208">transit -= id</label></transition><transition><source ref="id3"/><target ref="id4"/><label kind="guard" x="312" y="136">transit &gt; 3 || transit == 0</label><label kind="assignment" x="312" y="152">transit += id,
-x = 0</label></transition><transition><source ref="id5"/><target ref="id3"/><label kind="guard" x="568" y="64">x &gt;= 0</label><label kind="assignment" x="568" y="80">x = 0</label></transition></template><system>// Place template instantiations here.
+bool north, south, east, west;
+
+int wating;
+
+bool N_Idle, N_Waiting, N_Green;
+bool S_Idle, S_Waiting, S_Green;
+bool W_Idle, W_Waiting, W_Green;
+bool E_Idle, E_Waiting, E_Green;</declaration><template><name x="5" y="5">TrafficLightNS</name><parameter>int id</parameter><declaration>// Place local declarations here.
+clock x;</declaration><location id="id0" x="504" y="72"><name x="488" y="40">Wait</name><label kind="invariant" x="400" y="64">wating == 1</label></location><location id="id1" x="504" y="224"><name x="480" y="240">Green</name></location><location id="id2" x="688" y="152"><name x="704" y="144">Idle</name></location><init ref="id2"/><transition><source ref="id1"/><target ref="id2"/><label kind="guard" x="576" y="224">x &gt;= 10</label><label kind="assignment" x="576" y="208">transit -= id</label></transition><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="312" y="136">transit &lt; 4 || transit == 0</label><label kind="assignment" x="312" y="152">transit += id,
+wating--,
+x = 0</label></transition><transition><source ref="id2"/><target ref="id0"/><label kind="guard" x="576" y="64">x &gt;= 0 || transit == 0</label><label kind="assignment" x="576" y="80">x = 0,
+wating++</label><nail x="600" y="112"/></transition></template><template><name x="5" y="5">TrafficLightWE</name><parameter>int id</parameter><declaration>// Place local declarations here.
+clock x;</declaration><location id="id3" x="504" y="72"><name x="488" y="40">Wait</name><label kind="invariant" x="400" y="64">wating == 1</label></location><location id="id4" x="504" y="224"><name x="480" y="240">Green</name></location><location id="id5" x="688" y="152"><name x="678" y="122">Idle</name></location><init ref="id5"/><transition><source ref="id4"/><target ref="id5"/><label kind="guard" x="576" y="224">x &gt;= 10</label><label kind="assignment" x="576" y="208">transit -= id</label></transition><transition><source ref="id3"/><target ref="id4"/><label kind="guard" x="312" y="136">transit &gt; 3 || transit == 0</label><label kind="assignment" x="312" y="152">transit += id,
+wating--,
+x = 0</label></transition><transition><source ref="id5"/><target ref="id3"/><label kind="guard" x="568" y="64">x &gt;= 0 || transit == 0</label><label kind="assignment" x="568" y="80">x = 0,
+wating++</label></transition></template><system>// Place template instantiations here.
 NS = TrafficLightNS(1);
 SN = TrafficLightNS(2);
 WE = TrafficLightWE(4);

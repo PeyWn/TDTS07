@@ -3,7 +3,7 @@
 /*
 
 */
-NS.Wait --> NS.Green
+WE.Wait --> WE.Green
 
 /*
 
@@ -24,6 +24,11 @@ E<> NS.Green
 
 */
 A[] not deadlock
+
+/*
+
+*/
+E<> NS.Green and SN.Green
 
 /*
 
