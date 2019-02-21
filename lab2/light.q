@@ -23,4 +23,9 @@ E<> NS.Green
 /*
 
 */
+A[] not deadlock
+
+/*
+
+*/
 E<> not (((NS.Green or SN.Green) and (EW.Green or WE.Green)))
