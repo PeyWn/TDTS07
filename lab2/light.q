@@ -3,7 +3,7 @@
 /*
 
 */
-WE.Wait --> WE.Green
+NS.Wait --> NS.Green
 
 /*
 
