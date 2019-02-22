@@ -1,8 +1,16 @@
-\section{Section Name}
-% Write about the purpose of the Module
-% Explain the module signals
+\section{Sensor module}
 
+The sensor module allows to detect the passage of a car sent by the generator.
 
-\subsection{Function 1}
-%Purpose of function and why we implemented it in the way we did
-%Skip the print_method and write about it generally in the end.
+It also allows to count the number of cars waitting in the queue. This number will be update based on the generator module and the traffic light module.
+To do this, we use a method, wich is sensitive to the generator, so increment the number of cars. To decrement this number, we use a thread. Both of those functions will be explained below.
+
+\subsection{Sensor increment method}
+
+Every cars sent by the generator will trigg the sensor method and the method will basically increment the number of cars in the concerned direction.   
+
+\subsection{Sensor decrement thread}
+
+At first, wich two seconds, we rewrite the output of the module with 'false' if there is no cars waitting in the queue or with 'true' if there are. 
+
+And finally, we decrement the number of cars if the concerned traffic light is green. 
