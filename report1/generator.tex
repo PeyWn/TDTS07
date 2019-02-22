@@ -22,12 +22,16 @@ To avoid this problem we use a toggle that allows you to go back to the low stat
 The other generator will read a dedicated text file according to its direction to show the different properties. 
 All cases are presented below: 
 
-N : 1000000010001000000000001000100010000000
-S : 1000000010000000100010000000100010001000
-E : 1000100000001000000010001000000010001000
-W : 1000100000000000100000001000100000001000
-
-	N		N	N	N		N	N	N
-	S		S			S		S	S	S
-	E	E		E		E	E		E	E
-	W	W			W		W	W		W
+\begin{table}[]
+\begin{tabular}{llllllllllllllllll}
+N & : & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+S & : & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\
+E & : & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 0 \\
+W & : & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 0 \\
+  &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   &   \\
+  &   & N & - & N & - & N & - & N & - & N & - & N & - & N & - & N & - \\
+  &   & - & S & S & - & - & S & S & - & - & S & S & - & - & S & S & - \\
+  &   & - & - & - & E & E & E & E & - & - & - & - & E & E & E & E & - \\
+  &   & - & - & - & - & - & - & - & W & W & W & W & W & W & W & W & -
+\end{tabular}
+\end{table}
