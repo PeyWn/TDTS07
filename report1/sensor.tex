@@ -1,9 +1,5 @@
 \section{Sensor module}
-
-The sensor module allows to detect the passage of a car sent by the generator.
-
-It also allows to count the number of cars waitting in the queue. This number will be update based on the generator module and the traffic light module.
-To do this, we use a method, wich is sensitive to the generator, so increment the number of cars. To decrement this number, we use a thread. Both of those functions will be explained below.
+The purpose of the sensor module is to keep track of how many cars are waiting for a traffic light. To do this it has one increment method and one decrement thread. Furthermore, it has two input signals. The first is from the generator that is used by the increment method. The second is from the controller and is used by the decrement thread. The module also has an output signal to the controller module.
 
 \subsection{Sensor increment method}
 
