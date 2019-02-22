@@ -1,8 +1,33 @@
-\section{Section Name}
-% Write about the purpose of the Module
-% Explain the module signals
+\section{Generator module}
 
+The generation module allows to simulate the passage of cars in all directions in order to show the different properties of the lights. Two different generators are used as testbench and will be the input to the sensor modules. 
+The first one generates pseudo-random cars in order to show the behaviour of the fires in function of time.
+The other generates cars by reading a pre-written.txt file to show all possible cases one by one. 
 
-\subsection{Function 1}
-%Purpose of function and why we implemented it in the way we did
-%Skip the print_method and write about it generally in the end.
+The generator contains a print method, a generator method and a thread to trigger the generator method.
+
+\subsection{Event thread}
+
+The event_creator is a thread that triggers the generator method every two seconds. The generator will send a 1 if there is a car or a 0 if there is no car.
+
+\subsection{Random generator method}
+
+With each tic caused by the event, each module has a 30\% chance of generating a car.
+
+The sensor module (which will be explained later) requires a change of state to take into account the passage or not of a car. For example, if the generator sends five 1s in a row, the sensor will only take into account the first car. 
+To avoid this problem we use a toggle that allows you to go back to the low state with each car you meet. In our example, the sensor will therefore see all five cars.
+
+\subsection{Generator method}
+
+The other generator will read a dedicated text file according to its direction to show the different properties. 
+All cases are presented below: 
+
+N : 1000000010001000000000001000100010000000
+S : 1000000010000000100010000000100010001000
+E : 1000100000001000000010001000000010001000
+W : 1000100000000000100000001000100000001000
+
+	N		N	N	N		N	N	N
+	S		S			S		S	S	S
+	E	E		E		E	E		E	E
+	W	W			W		W	W		W
