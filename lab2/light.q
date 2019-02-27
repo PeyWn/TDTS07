@@ -3,22 +3,22 @@
 /*
 
 */
-NS.Wait --> NS.Green
+N.Wait --> N.Green
 
 /*
 
 */
-E<> WE.Green
+E<> W.Green
 
 /*
 
 */
-E<> SN.Green
+E<> S.Green
 
 /*
 
 */
-E<> NS.Green
+E<> N.Green
 
 /*
 
@@ -28,7 +28,7 @@ A[] not deadlock
 /*
 
 */
-E<> NS.Green and SN.Green
+E<> N.Green and S.Green
 
 /*
 

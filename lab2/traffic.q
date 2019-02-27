@@ -3,6 +3,16 @@
 /*
 
 */
+NS.Idle --> NS.Wait 
+
+/*
+
+*/
+NS.Wait --> NS.Green 
+
+/*
+
+*/
 A[] not deadlock
 
 /*
