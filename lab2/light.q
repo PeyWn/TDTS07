@@ -3,27 +3,22 @@
 /*
 
 */
-N.Idle --> N.Wait
+Nd.Wait --> Nd.Green
 
 /*
 
 */
-N.Wait --> N.Green
+E<> Wd.Green
 
 /*
 
 */
-E<> W.Green
+E<> Sd.Green
 
 /*
 
 */
-E<> S.Green
-
-/*
-
-*/
-E<> N.Green
+E<> Nd.Green
 
 /*
 
@@ -33,9 +28,9 @@ A[] not deadlock
 /*
 
 */
-E<> N.Green and S.Green
+E<> Nd.Green and Sd.Green
 
 /*
 
 */
-E<> not (((N.Green or S.Green) and (E.Green or W.Green)))
+E<> not (((Nd.Green or Sd.Green) and (Ed.Green or Wd.Green)))
