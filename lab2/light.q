@@ -3,6 +3,11 @@
 /*
 
 */
+N.Idle --> N.Wait
+
+/*
+
+*/
 N.Wait --> N.Green
 
 /*
@@ -33,4 +38,4 @@ E<> N.Green and S.Green
 /*
 
 */
-E<> not (((NS.Green or SN.Green) and (EW.Green or WE.Green)))
+E<> not (((N.Green or S.Green) and (E.Green or W.Green)))
