@@ -2,7 +2,7 @@
 int transit;
 int waiting;
 
-int N, S, E, W = 0; 
+int N, S, E, W = 0;
 
 chan north, south, east, west;
 broadcast chan NS, EW;</declaration><template><name x="5" y="5">TrafficLightN</name><parameter>int id</parameter><declaration>// Place local declarations here.
@@ -31,8 +31,8 @@ int i = 1;
 S&gt;N and
 S&gt;E</label><label kind="assignment" x="-80" y="128">S = 0</label><nail x="32" y="96"/></transition><transition><source ref="id15"/><target ref="id16"/><label kind="synchronisation" x="-96" y="-128">north!</label><nail x="-32" y="-96"/></transition><transition><source ref="id16"/><target ref="id15"/><label kind="guard" x="32" y="-160">N&gt;S and
 N&gt;E and
-N&gt;W</label><label kind="assignment" x="-96" y="-112">N = 0</label><nail x="32" y="-96"/></transition><transition><source ref="id14"/><target ref="id16"/><label kind="synchronisation" x="120" y="40">east!</label><nail x="96" y="32"/></transition><transition><source ref="id16"/><target ref="id14"/><label kind="guard" x="80" y="-80">E&gt;S and 
-E&gt;N and 
+N&gt;W</label><label kind="assignment" x="-96" y="-112">N = 0</label><nail x="32" y="-96"/></transition><transition><source ref="id14"/><target ref="id16"/><label kind="synchronisation" x="120" y="40">east!</label><nail x="96" y="32"/></transition><transition><source ref="id16"/><target ref="id14"/><label kind="guard" x="80" y="-80">E&gt;S and
+E&gt;N and
 E&gt;W</label><label kind="assignment" x="36" y="0">E = 0</label><nail x="96" y="-32"/></transition><transition><source ref="id16"/><target ref="id12"/><label kind="guard" x="-152" y="32">W&gt;S and
 W&gt;N and
 W&gt;E</label><label kind="assignment" x="-160" y="0">W=0</label><nail x="-96" y="32"/></transition><transition><source ref="id12"/><target ref="id16"/><label kind="synchronisation" x="-168" y="-48">west!</label><nail x="-96" y="-32"/></transition></template><template><name>P0</name><declaration>clock x;</declaration><location id="id17" x="288" y="0"><label kind="invariant" x="278" y="15">x &lt; 5</label></location><location id="id18" x="0" y="0"><label kind="invariant" x="-10" y="15">x &lt; 5</label></location><init ref="id18"/><transition><source ref="id17"/><target ref="id18"/><label kind="synchronisation" x="176" y="56">NS!</label><nail x="160" y="64"/></transition><transition><source ref="id18"/><target ref="id17"/><label kind="synchronisation" x="176" y="-72">EW!</label><nail x="152" y="-64"/></transition></template><system>// Place template instantiations here.
