@@ -1,8 +1,12 @@
-\section{Section Name}
-% Write about the purpose of the Module
-% Explain the module signals
+\section{Sensor module}
+The purpose of the sensor module is to keep track of how many cars are waiting for a traffic light. To do this it has one increment method and one decrement thread. Furthermore, it has two input signals. The first is from the generator that is used by the increment method. The second is from the controller and is used by the decrement thread. The module also has an output signal to the controller module.
 
+\subsection{Sensor increment method}
 
-\subsection{Function 1}
-%Purpose of function and why we implemented it in the way we did
-%Skip the print_method and write about it generally in the end.
+The purpose of this function is to count the number of cars waitting for the green light. 
+
+\subsection{Sensor decrement thread}
+
+The purpose of this function is to empty the cars queue in a time interval when the light is green.
+Since we wanted to be on a time interval, we implanted using a thread. The time interval is the time needed by car to leave the junction. 
+
