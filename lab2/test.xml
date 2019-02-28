@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+int transit;
+
+clock timer;
+
+broadcast chan N_S, W_E;
+
+bool toggleNS=1, toggleWE=1;
+</declaration><template><name x="5" y="5">TrafficLightNS</name><parameter>int id</parameter><declaration>// Place local declarations here.
+clock x;</declaration><location id="id0" x="504" y="72"><name x="488" y="40">Wait</name></location><location id="id1" x="504" y="224"><name x="480" y="240">Green</name></location><location id="id2" x="688" y="152"><name x="704" y="144">Idle</name></location><init ref="id2"/><transition><source ref="id1"/><target ref="id2"/><label kind="guard" x="576" y="224">x &gt;= 10</label><label kind="assignment" x="576" y="208">transit -= id</label></transition><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="312" y="160">transit &lt; 4 || transit == 0</label><label kind="synchronisation" x="444" y="133">N_S?</label><label kind="assignment" x="312" y="176">transit += id,
+x = 0</label></transition><transition><source ref="id2"/><target ref="id0"/><label kind="guard" x="576" y="64">(x &gt;= 0 || transit == 0) &amp;&amp; toggleNS</label><label kind="assignment" x="576" y="80">x = 0</label><nail x="600" y="112"/></transition></template><template><name x="5" y="5">TrafficLightWE</name><parameter>int id</parameter><declaration>// Place local declarations here.
+clock x;</declaration><location id="id3" x="504" y="72"><name x="488" y="40">Wait</name></location><location id="id4" x="504" y="224"><name x="480" y="240">Green</name></location><location id="id5" x="688" y="152"><name x="704" y="144">Idle</name></location><init ref="id5"/><transition><source ref="id4"/><target ref="id5"/><label kind="guard" x="576" y="224">x &gt;= 10</label><label kind="assignment" x="576" y="208">transit -= id</label></transition><transition><source ref="id3"/><target ref="id4"/><label kind="guard" x="312" y="136">transit &gt; 3 || transit == 0</label><label kind="synchronisation" x="312" y="120">W_E?</label><label kind="assignment" x="312" y="152">transit += id,
+x = 0</label></transition><transition><source ref="id5"/><target ref="id3"/><label kind="guard" x="568" y="64">(x &gt;= 0 || transit == 0) &amp;&amp; toggleWE</label><label kind="assignment" x="568" y="80">x = 0</label></transition></template><template><name>Controller</name><location id="id6" x="128" y="0"><name x="118" y="-30">WE</name><label kind="invariant" x="118" y="15">timer&lt;=1</label></location><location id="id7" x="-64" y="0"><name x="-74" y="-30">NS</name><label kind="invariant" x="-112" y="16">timer&lt;=1</label></location><init ref="id7"/><transition><source ref="id6"/><target ref="id7"/><label kind="guard" x="16" y="-96">timer&gt;=1</label><label kind="synchronisation" x="16" y="-112">W_E!</label><label kind="assignment" x="16" y="-80">timer=0</label><nail x="32" y="-64"/></transition><transition><source ref="id7"/><target ref="id6"/><label kind="guard" x="0" y="112">timer&gt;=1</label><label kind="synchronisation" x="0" y="96">N_S!</label><label kind="assignment" x="0" y="80">timer=0</label><nail x="32" y="64"/></transition></template><system>// Place template instantiations here.
+NS = TrafficLightNS(1);
+SN = TrafficLightNS(2);
+WE = TrafficLightWE(4);
+EW = TrafficLightWE(8);
+Control = Controller();
+
+
+// List one or more processes to be composed into a system.
+system NS, SN, WE, EW, Control;</system></nta>
