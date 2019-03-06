@@ -3,12 +3,12 @@
 /*
 
 */
-A<> S.S1
+E<> R.M1
 
 /*
 
 */
-S.S1 --> R.R1
+S.New_message --> R.M1
 
 /*
 
