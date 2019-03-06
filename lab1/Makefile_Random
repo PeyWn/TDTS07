@@ -49,7 +49,7 @@ sensor.o: sensor.cc sensor.h
 controller.o: controller.cc controller.h
 	$(CC) -c $(CFLAGS) $(INCDIR) controller.cc -o controller.o
 
-generator.o: generator_rand.cc generator.h
+generator_rand.o: generator_rand.cc generator.h
 	$(CC) -c $(CFLAGS) $(INCDIR) generator_rand.cc -o generator_rand.o
 
 clean:
