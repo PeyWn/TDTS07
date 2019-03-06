@@ -1,5 +1,5 @@
 #include <systemc.h>
-#include "generator.h"
+#include "generator_rand.h"
 #include "controller.h"
 #include "sensor.h"
 

@@ -1,16 +1,12 @@
-#include "generator.h"
+#include "generator_rand.h"
 #include <cassert>
 
 using std::cout;
 using std::endl;
 
-Generator::Generator(sc_module_name name, char *datafile)
+Generator::Generator(sc_module_name name)
   : sc_module(name)
 {
-  assert(datafile != 0);       // An input file should be given.
-
-  in = new ifstream(datafile); // Open the input file.
-  assert(*in);                 // Check that everything is OK.
 
   toggle = true;
   srand(time(NULL)); //Init rand
@@ -32,7 +28,6 @@ void Generator::print_method() {
 
 Generator::~Generator()
 {
-  delete in;
 }
 
 void Generator::gen_method() {

@@ -40,7 +40,7 @@ $(EXE): $(OBJS)
 # recompile the object file. The list should be the .cc-file beeing compiled,
 # and all the .h-files that are included in that .cc-file.
 
-main_rand.o: main_rand.cc sensor.h controller.h generator.h
+main_rand.o: main_rand.cc sensor.h controller.h generator_rand.h
 	$(CC) -c $(CFLAGS) $(INCDIR) main_rand.cc -o main_rand.o
 
 sensor.o: sensor.cc sensor.h
@@ -49,7 +49,7 @@ sensor.o: sensor.cc sensor.h
 controller.o: controller.cc controller.h
 	$(CC) -c $(CFLAGS) $(INCDIR) controller.cc -o controller.o
 
-generator_rand.o: generator_rand.cc generator.h
+generator_rand.o: generator_rand.cc generator_rand.h
 	$(CC) -c $(CFLAGS) $(INCDIR) generator_rand.cc -o generator_rand.o
 
 clean:
