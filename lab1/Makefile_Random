@@ -2,7 +2,7 @@
 PROGRAM = main.x
 
 # The source files (*.cc)
-SRCS = sensor.cc generator_rand.cc controller.cc main.cc
+SRCS = sensor.cc generator_rand.cc controller.cc main_rand.cc
 
 ##################################
 ## DO NOT CHANGE ANYTHING BELOW ##
@@ -40,8 +40,8 @@ $(EXE): $(OBJS)
 # recompile the object file. The list should be the .cc-file beeing compiled,
 # and all the .h-files that are included in that .cc-file.
 
-main.o: main.cc sensor.h controller.h generator.h
-	$(CC) -c $(CFLAGS) $(INCDIR) main.cc -o main.o
+main_rand.o: main_rand.cc sensor.h controller.h generator.h
+	$(CC) -c $(CFLAGS) $(INCDIR) main_rand.cc -o main_rand.o
 
 sensor.o: sensor.cc sensor.h
 	$(CC) -c $(CFLAGS) $(INCDIR) sensor.cc -o sensor.o
