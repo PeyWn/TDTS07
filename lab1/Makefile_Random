@@ -29,6 +29,7 @@ OBJS = $(SRCS:.cc=.o)
 $(EXE): $(OBJS)
 	$(CC) $(LDFLAGS) $(INCDIR) $(LIBDIR) -o $(EXE) $(OBJS) $(LIBS)
 
+
 # To build the whole project we must compile each .cc file into a .o file, and
 # then link all .o-files into an executable. The rule above tells the make tool
 # how to link the object files into an executable. To create the object files we
