@@ -1,0 +1,14 @@
+\subsection{Traffic Light Controller}
+\label{sec:org7954bf6}
+The Traffic light timed automata have three templates. Two for the traffic lights and one controller. The reason that we chose to have two templates for the traffic light instead of one is because there is a slight difference between north and south compared to east and west. 
+
+We have a integer called transfer that behaves like a four byte number. We use this to define seven states of the system, north, south, east, west, north-south, east-west or none. To do this each traffic direction is initialized with a id, 1,2,4,8; these are then added and subtracted form transfer when a light goes to and from green respectively. This enables us to define states be checking the value of transfer, if it's less the 4 for example the state is 1\&2. Less then 2 the state is 1 and so on.
+
+\subsection{Traffic Light Template}
+\label{sec:orgc8497f6}
+The template has three states, \emph{idle} (red light), \emph{wait} (there are cars waiting) and \emph{Green} (green light). To force the system to transit state the edge form \emph{wait} to \emph{Green} is triggered be a channel form the controller while \emph{Green} has a timed invariant. 
+
+\subsection{Controller}
+\label{sec:org0c24095}
+The controller has to states that it switches between on a timed interval. The edges form NS to WE triggers one channel for the WE traffic light and vice versa for the edge form WE to NS but with an other channel.
+

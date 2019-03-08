@@ -1,0 +1,9 @@
+\section{Fisher 2}
+\label{sec:org1637cd2}
+If m < k then the mutex requirement will not be satisfied. An example of this is the sequence:
+
+(-,-,-,-) $\rightarrow$ (req,-,-,-) $\rightarrow$ (req,req,-,-) $\rightarrow$ (wait,req,-,-) $\rightarrow$ (cs,req,-,-) $\rightarrow$ (cs,wait,-,-) $\rightarrow$ (cs,cs,-,-)
+
+If m  \textgreater= k then mutex requirement will be satisfied.
+
+ 
