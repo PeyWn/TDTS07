@@ -28,4 +28,3 @@ If m >= k then mutex requirement will be satisfied.
 *** 3.4 Traffic Light Controller
  
 *** 3.5 Alternating Bit Protocol 
-
