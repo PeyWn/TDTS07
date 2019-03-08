@@ -36,3 +36,14 @@ The template has three states, /idle/ (red light), /wait/ (there are cars waitin
 The controller has to states that it switches between on a timed interval. The edges form NS to WE triggers one channel for the WE traffic light and vice versa for the edge form WE to NS but with an other channel.
 
 ** 3.5 Alternating Bit Protocol 
+The ABP (Alternating Bit protocol) system have three components, sender, receiver and a channel.
+
+*** Sender 
+The sender creates a message that it tries to send trough the channel to the receiver. It has four nodes, /mode zero, new message, mode one/ and a /transition node/ between mode one and zero. From /mode zero/ the sender can move to /new message/. In new message the sender waits for a acknowledgment form the receiver, this can be ether one or zero. If zero the sender transitions to /mode one/. Otherwise it re-transmits the message with state 0. In mode one the sender awaits an other acknowledgment form the receiver. If one the sender goes to /mode zero/. Otherwise it re-transmits the message with state 1.
+
+In /new message/ and /mode one (the transition node)/ the sender can time out. If so it re-transmits the message with 0 and 1 respectively.
+
+*** Receiver
+The receiver receives a message form the channel. It has four nodes, /mode zero, mode one and two transition nodes/. Form /mode zero/ the receiver can move to /mode one/ tough a transition node or back to it self trough a transition node. In this case it re-transmits a acknowledgment with 1. In /mode one/ the receiver can move to /mode zero/ trough a transition node or back to it self trough a transition node.
+
+In /mode zero/ and /mode one/ the receives can time out. If so it re-transmits the message with 1 and 0 respectively.
