@@ -47,3 +47,10 @@ In /new message/ and /mode one (the transition node)/ the sender can time out. I
 The receiver receives a message form the channel. It has four nodes, /mode zero, mode one and two transition nodes/. Form /mode zero/ the receiver can move to /mode one/ tough a transition node or back to it self trough a transition node. In this case it re-transmits a acknowledgment with 1. In /mode one/ the receiver can move to /mode zero/ trough a transition node or back to it self trough a transition node.
 
 In /mode zero/ and /mode one/ the receives can time out. If so it re-transmits the message with 1 and 0 respectively.
+
+When the receiver moves to /mode one/ it transmits an acknowledgment 0 to the channel and if it moves to /mode zero/ it transmits an acknowledgment 1 to the channel.
+
+ 
+*** Channel 
+The channel has to nodes. From the first it has four edges to move to the second. They are sensitive to the receivers acknowledgment and the senders message. There are also four edges form the second node to the first. They activate the acknowledgment in the sender and the state change in the receiver.
+

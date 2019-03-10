@@ -1,0 +1,22 @@
+\section{3.5 Alternating Bit Protocol}
+\label{sec:orgbe25189}
+The ABP (Alternating Bit protocol) system have three components, sender, receiver and a channel.
+
+\subsection{Sender}
+\label{sec:org7ae819b}
+The sender creates a message that it tries to send trough the channel to the receiver. It has four nodes, \emph{mode zero, new message, mode one} and a \emph{transition node} between mode one and zero. From \emph{mode zero} the sender can move to \emph{new message}. In new message the sender waits for a acknowledgment form the receiver, this can be ether one or zero. If zero the sender transitions to \emph{mode one}. Otherwise it re-transmits the message with state 0. In mode one the sender awaits an other acknowledgment form the receiver. If one the sender goes to \emph{mode zero}. Otherwise it re-transmits the message with state 1.
+
+In \emph{new message} and \emph{mode one (the transition node)} the sender can time out. If so it re-transmits the message with 0 and 1 respectively.
+
+\subsection{Receiver}
+\label{sec:orgd6300e9}
+The receiver receives a message form the channel. It has four nodes, \emph{mode zero, mode one and two transition nodes}. Form \emph{mode zero} the receiver can move to \emph{mode one} tough a transition node or back to it self trough a transition node. In this case it re-transmits a acknowledgment with 1. In \emph{mode one} the receiver can move to \emph{mode zero} trough a transition node or back to it self trough a transition node.
+
+In \emph{mode zero} and \emph{mode one} the receives can time out. If so it re-transmits the message with 1 and 0 respectively.
+
+When the receiver moves to \emph{mode one} it transmits an acknowledgment 0 to the channel and if it moves to \emph{mode zero} it transmits an acknowledgment 1 to the channel.
+
+
+\subsection{Channel}
+\label{sec:org3ee9f26}
+The channel has to nodes. From the first it has four edges to move to the second. They are sensitive to the receivers acknowledgment and the senders message. There are also four edges form the second node to the first. They activate the acknowledgment in the sender and the state change in the receiver.
