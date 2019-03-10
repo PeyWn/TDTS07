@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.26)  10 MAR 2019 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.26)  10 MAR 2019 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -373,23 +373,35 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip72
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count280
-) (./lab_report_1.aux)
+)
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
+\inpenc@prehook=\toks21
+\inpenc@posthook=\toks22
+)
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
+
+(/usr/share/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+)) (./lab_report_1.aux)
 \openout1 = `lab_report_1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 
-Package chemgreek Info: Activating mapping `default' on line 49.
+Package chemgreek Info: Activating mapping `default' on line 52.
 
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -399,12 +411,12 @@ Package chemgreek Info: Activating mapping `default' on line 49.
 \scratchbox=\box56
 \nofMPsegments=\count282
 \nofMParguments=\count283
-\everyMPshowfont=\toks21
+\everyMPshowfont=\toks23
 \MPscratchCnt=\count284
 \MPscratchDim=\dimen167
 \MPnumerator=\count285
 \makeMPintoPDFobject=\count286
-\everyMPtoPDFconversion=\toks22
+\everyMPtoPDFconversion=\toks24
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -552,18 +564,18 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 25.
 
 
-Overfull \hbox (20.44507pt too wide) in paragraph at lines 26--37
+Overfull \hbox (20.40823pt too wide) in paragraph at lines 26--37
 [][] 
  []
 
 ) [3] (./controller.tex
-Overfull \hbox (6.87346pt too wide) in paragraph at lines 11--12
-\OT1/cmr/m/n/10 ``\OT1/cmr/m/it/10 WEST, EAST, EAST[]AND[]WEST, SOUTH, NORTH, N
-ORTH[]AND[]SOUTH,
+Overfull \hbox (21.89883pt too wide) in paragraph at lines 11--12
+\T1/cmr/m/n/10 ``\T1/cmr/m/it/10 WEST, EAST, EAST_AND_WEST, SOUTH, NORTH, NORTH
+_AND_SOUTH,
  []
 
 [4]) [5] (./system.tex
-<system_img.jpg, id=24, 783.92876pt x 432.61626pt>
+<system_img.jpg, id=25, 783.92876pt x 432.61626pt>
 File: system_img.jpg Graphic file (type jpg)
 <use system_img.jpg>
 Package pdftex.def Info: system_img.jpg  used on input line 12.
@@ -571,23 +583,24 @@ Package pdftex.def Info: system_img.jpg  used on input line 12.
 ) [6 <./system_img.jpg>] (./result.tex)
 (./lab_report_1.aux) ) 
 Here is how much of TeX's memory you used:
- 15193 strings out of 492616
- 303756 string characters out of 6135177
- 351044 words of memory out of 5000000
- 19015 multiletter control sequences out of 15000+600000
- 540881 words of font info for 56 fonts, out of 8000000 for 9000
+ 15424 strings out of 492616
+ 305666 string characters out of 6135177
+ 351688 words of memory out of 5000000
+ 19234 multiletter control sequences out of 15000+600000
+ 544998 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,63p,725b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
-x12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmti10.pfb>
-Output written on lab_report_1.pdf (6 pages, 104956 bytes).
+ 41i,7n,63p,725b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-
+t1.enc}</usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/
+fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
+rm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></us
+r/share/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on lab_report_1.pdf (6 pages, 129857 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 53 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
