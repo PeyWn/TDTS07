@@ -3,3 +3,17 @@
 
 \section{How to run}
 To run the system with the test files first make the project with < make -f MakeFile > and then <main.x fil1 file2 file3 file4 fileOut>. The files are input files for the directions with 0 representing no car and 1 represents a car. The last file is an output file. To compile the project to generate pseudo-random cars, use <make -f MakeFile_Random> and run <main.x> fs
+
+\section{Independence and Safety}
+
+The proof that the lights work independently and safety is demonstrated by the test bench. This test bench, given the test files, represents all sixteen possible cases.
+
+For example, if the light NS is green, the light SN is red if there are no cars coming in the direction SN.
+Furthermore, the North or South lights can't be green at the same time as the East or West lights.
+And even more, if a vehicle arrives at the crossing, it will eventually be granted the green light, according to the safety property.
+
+This result is possible thanks to a state machine or "controller" who prevents any problem by reading the sensors and set the lights properly. 
+
+\section{Conclusion}
+
+After all those properties have been proved, the random car generation can ensure that the system works correctly in the time. 
