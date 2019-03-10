@@ -1,11 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.26)  10 MAR 2019 17:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.26)  10 MAR 2019 20:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**lab_report_1.tex
-(./lab_report_1.tex
-LaTeX2e <2018-12-01>
-(/usr/share/texmf-dist/tex/latex/base/article.cls
+**\nonstopmode\input lab_report_1.tex
+(./lab_report_1.tex (/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
@@ -561,10 +559,10 @@ File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 (./generator.tex
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 25.
+               Default added (so using `tbp') on input line 26.
 
 
-Overfull \hbox (20.40823pt too wide) in paragraph at lines 26--37
+Overfull \hbox (20.40823pt too wide) in paragraph at lines 27--38
 [][] 
  []
 
@@ -574,33 +572,73 @@ Overfull \hbox (21.89883pt too wide) in paragraph at lines 11--12
 _AND_SOUTH,
  []
 
-[4]) [5] (./system.tex
+) [4] [5] (./system.tex
 <system_img.jpg, id=25, 783.92876pt x 432.61626pt>
 File: system_img.jpg Graphic file (type jpg)
 <use system_img.jpg>
 Package pdftex.def Info: system_img.jpg  used on input line 12.
 (pdftex.def)             Requested size: 517.5pt x 285.60022pt.
-) [6 <./system_img.jpg>] (./result.tex)
-(./lab_report_1.aux) ) 
+) [6 <./system_img.jpg>] (./result.tex
+! Missing $ inserted.
+<inserted text> 
+                $
+l.5 ... pseudo-random cars, use <make -f MakeFile_
+                                                  Random> and run <main.x> fs
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.6 
+    
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Undefined control sequence.
+<argument> \textasciiacute 
+                           
+l.15 ...s possible thanks to a state machine or ´
+                                                  ´controller'' who prevent...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> \textasciiacute 
+                           
+l.15 ...possible thanks to a state machine or ´´
+                                                  controller'' who prevents ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) [7] (./lab_report_1.aux) ) 
 Here is how much of TeX's memory you used:
  15424 strings out of 492616
  305666 string characters out of 6135177
- 351688 words of memory out of 5000000
+ 350688 words of memory out of 5000000
  19234 multiletter control sequences out of 15000+600000
  544998 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,63p,725b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-
-t1.enc}</usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/
-fonts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf-dist/fonts/type1/pub
-lic/cm-super/sfrm1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sf
-rm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></us
-r/share/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on lab_report_1.pdf (6 pages, 129857 bytes).
+ 41i,7n,63p,744b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-
+super-t1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texm
+f-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-s
+uper/sfcc1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1000.p
+fb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/
+texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf-dist/font
+s/type1/public/cm-super/sfti1000.pfb>
+Output written on lab_report_1.pdf (7 pages, 150264 bytes).
 PDF statistics:
- 53 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
