@@ -1,9 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.26)  8 MAR 2019 12:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/Arch Linux) (preloaded format=pdflatex 2019.2.26)  10 MAR 2019 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\nonstopmode\input lab_report_2.tex
-(./lab_report_2.tex (/usr/share/texmf-dist/tex/latex/base/article.cls
+**lab_report_2.tex
+(./lab_report_2.tex
+LaTeX2e <2018-12-01>
+(/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
@@ -560,17 +562,17 @@ File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 7.
 ) [4]
-(./traffic_light.tex)
+(./traffic_light.tex) [5] (./abp.tex)
 No file lab_report_2.bbl.
-[5] (./lab_report_2.aux) ) 
+[6] (./lab_report_2.aux) ) 
 Here is how much of TeX's memory you used:
- 15223 strings out of 492616
- 304294 string characters out of 6135177
- 343090 words of memory out of 5000000
- 19043 multiletter control sequences out of 15000+600000
+ 15230 strings out of 492616
+ 304377 string characters out of 6135177
+ 344114 words of memory out of 5000000
+ 19047 multiletter control sequences out of 15000+600000
  540881 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,63p,578b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,7n,63p,701b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
 /usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
@@ -578,10 +580,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
 .pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on lab_report_2.pdf (5 pages, 94448 bytes).
+Output written on lab_report_2.pdf (6 pages, 97672 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 38 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
