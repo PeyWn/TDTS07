@@ -1,0 +1,13 @@
+///////////////////////////////////////////////////////////////////////////////
+// Copyright 2003 DEIS - Universita' di Bologna
+//
+// name         appsupport.cpp
+// author       DEIS - Universita' di Bologna
+//              Federico Angiolini - fangiolini@deis.unibo.it
+//              Mirko Loghi - mloghi@deis.unibo.it
+//              Francesco Poletti - fpoletti@deis.unibo.it
+// info         Provides support for testbench compilation
+//
+///////////////////////////////////////////////////////////////////////////////
+
+#include "appsupport.c"

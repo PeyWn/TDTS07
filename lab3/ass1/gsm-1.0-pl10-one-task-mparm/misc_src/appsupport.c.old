@@ -1,0 +1,501 @@
+///////////////////////////////////////////////////////////////////////////////
+// Copyright 2003 DEIS - Universita' di Bologna
+//
+// name         appsupport.c
+// author       DEIS - Universita' di Bologna
+//              Federico Angiolini - fangiolini@deis.unibo.it
+//              Mirko Loghi - mloghi@deis.unibo.it
+//              Francesco Poletti - fpoletti@deis.unibo.it
+// info         Provides support for testbench compilation
+//
+///////////////////////////////////////////////////////////////////////////////
+
+#include "appsupport.h"
+#ifdef HAVE_RTEMS
+  #include <fcntl.h>
+  #include <stdio.h>
+#endif
+
+volatile int *semaphores               = (int *)SEMAPHORE_BASE;
+volatile int *lock                     = ((int *)(SEMAPHORE_BASE + SEMAPHORE_SIZE)) - HWLOCK_SPLIT;
+volatile unsigned char *shared         = (unsigned char *)SHARED_BASE;
+volatile unsigned int *interruptdevice = (unsigned int *)INTERRUPT_BASE;
+volatile unsigned int *freqdevice      = (unsigned int *)FREQ_BASE;
+unsigned int NODE_NUMBER;
+unsigned int NNODES;
+
+volatile char *pr_string_ptr  = (char *)(SIMSUPPORT_BASE + DEBUG_MSG_STRING_ADDRESS);
+volatile char *pr_value_ptr   = (char *)(SIMSUPPORT_BASE + DEBUG_MSG_VALUE_ADDRESS);
+volatile char *pr_mode_ptr    = (char *)(SIMSUPPORT_BASE + DEBUG_MSG_MODE_ADDRESS);
+
+volatile char *time_low_ptr   = (char *)(SIMSUPPORT_BASE + GET_TIME_ADDRESS_LO);
+volatile char *time_high_ptr  = (char *)(SIMSUPPORT_BASE + GET_TIME_ADDRESS_HI);
+volatile char *time_stop_ptr  = (char *)(SIMSUPPORT_BASE + STOP_TIME_ADDRESS);
+volatile char *time_rel_ptr   = (char *)(SIMSUPPORT_BASE + RELEASE_TIME_ADDRESS);
+
+volatile char *cycle_low_ptr  = (char *)(SIMSUPPORT_BASE + GET_CYCLE_ADDRESS_LO);
+volatile char *cycle_high_ptr = (char *)(SIMSUPPORT_BASE + GET_CYCLE_ADDRESS_HI);
+volatile char *cycle_stop_ptr = (char *)(SIMSUPPORT_BASE + STOP_CYCLE_ADDRESS);
+volatile char *cycle_rel_ptr  = (char *)(SIMSUPPORT_BASE + RELEASE_CYCLE_ADDRESS);
+
+volatile char *file_name_ptr  = (char *)(SIMSUPPORT_BASE + FILE_NAME_ADDRESS);
+volatile char *file_mode_ptr  = (char *)(SIMSUPPORT_BASE + FILE_MODE_ADDRESS);
+volatile char *file_open_ptr  = (char *)(SIMSUPPORT_BASE + FILE_OPEN_ADDRESS);
+volatile char *file_shift_ptr = (char *)(SIMSUPPORT_BASE + FILE_SHIFT_ADDRESS);
+volatile char *file_close_ptr = (char *)(SIMSUPPORT_BASE + FILE_CLOSE_ADDRESS);
+volatile char *file_wdata_ptr = (char *)(SIMSUPPORT_BASE + FILE_WINDOW_DATA_ADDRESS);
+volatile char *file_ptr       = (char *)(SIMSUPPORT_BASE + FILE_ADDRESS);
+
+
+// -------------------------------
+// Memory-mapped support functions
+// -------------------------------
+///////////////////////////////////////////////////////////////////////////////
+// pr - Allows printing debug info even without support from an OS
+void pr(char *msg, unsigned long int value, unsigned long int mode)
+{
+  // Initialize message, value
+  *(unsigned long int *)pr_string_ptr = (unsigned long int)msg;
+  *(unsigned long int *)pr_value_ptr = value;
+  // Set mode and print
+  *(unsigned long int *)pr_mode_ptr = mode;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// get_proc_id - Allows getting the processor's ID (from 1 onwards)
+unsigned int get_proc_id()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + GET_CPU_ID_ADDRESS);
+  return (*(unsigned long int *)ptr);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// get_proc_num - Allows getting the number of processors in the platform
+unsigned int get_proc_num()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + GET_CPU_CNT_ADDRESS);
+  return (*(unsigned long int *)ptr);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// end_boot - Marks the end of the bootstrap stage
+void end_boot()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + ENDBOOT_ADDRESS);
+  *ptr = 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// stop_simulation - Exits the simulation (when all processors will be done)
+void stop_simulation()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + SHUTDOWN_ADDRESS);
+  *ptr = 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// dump_metric - Does an instant dump of simulation statistics
+void dump_metric()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + DUMP_ADDRESS);
+  *ptr = 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// dump_light_metric - Does an instant light dump of simulation statistics
+void dump_light_metric()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + DUMP_LIGHT_ADDRESS);
+  *ptr = 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// clear_metric - Resets simulation statistics
+void clear_metric()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + CLEAR_ADDRESS);
+  *ptr = 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// get_argc - Allows getting the argc command line parameter
+unsigned int get_argc()
+{
+  char *ptr = (char *)(SIMSUPPORT_BASE + GET_ARGC_ADDRESS);
+  return (*(unsigned long int *)ptr);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// get_argv - Allows getting the argv command line parameter
+char **get_argv()
+{
+  char **ptr = (char **)(SIMSUPPORT_BASE + GET_ARGV_ADDRESS);
+  return (ptr);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// get_envp - Allows getting the environment
+char **get_envp()
+{
+  char **ptr = (char **)(SIMSUPPORT_BASE + GET_ENVP_ADDRESS);
+  return (ptr);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// get_time - Allows getting the current simulation time
+unsigned long long int get_time()
+{
+  unsigned long long int time;
+  
+  *time_stop_ptr = 1;
+  time = (((unsigned long long int)(*(unsigned long int *)time_high_ptr)) << 32) + *(unsigned long int *)time_low_ptr;
+  *time_rel_ptr = 1;
+  
+  return (time);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// get_cycle - Allows getting the current simulation cycle
+unsigned long long int get_cycle()
+{
+  unsigned long long int cycle;
+  
+  *cycle_stop_ptr = 1;
+  cycle = (((unsigned long long int)(*(unsigned long int *)cycle_high_ptr)) << 32) + *(unsigned long int *)cycle_low_ptr;
+  *cycle_rel_ptr = 1;
+  
+  return (cycle);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// access_file - Allows reading or writing one file on the simulation host
+unsigned long int access_file(char *filename, unsigned long int mode)
+{
+  unsigned long int retval, file_window_data, roundedup_file_window_data;
+  unsigned long int windowloop = 1, wordloop;
+  unsigned long int filewindow[FILE_WINDOW_SIZE];
+#ifdef HAVE_RTEMS
+  int fd;
+#endif
+  
+  // Initialize file name, access mode
+  *(unsigned long int *)file_name_ptr = (unsigned long int)filename;
+  if (mode == FILE_READ)
+    *(unsigned long int *)file_mode_ptr = FILE_READ;
+  else
+    *(unsigned long int *)file_mode_ptr = FILE_WRITE;
+  
+  // Open the file on the simulation host
+  retval = *(unsigned long int *)file_open_ptr;
+  if (retval == 0)
+    return 0;
+    
+  // Open the simulated file
+#ifdef HAVE_RTEMS
+    fd = open(filename, O_RDWR | O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
+    if (fd < 0)
+      return 0;
+    printf("Opened file %s with result %d\n", filename, fd);
+#else
+        // TODO
+#endif
+
+  // This is a read
+  if (mode == FILE_READ)
+  {
+    // Move data
+    while (windowloop == 1)
+    {
+      // Ask for a new data window
+      *(unsigned long int *)file_shift_ptr = 1;
+      // Check how many bytes we have before the EOF
+      file_window_data = *(unsigned long int *)file_wdata_ptr;
+      if (file_window_data != FILE_WINDOW_SIZE * 4)
+        windowloop = 0;
+      
+      // pr("Reading a window, data bytes:", file_window_data, PR_CPU_ID | PR_STRING | PR_DEC | PR_NEWL);
+      
+      if (file_window_data != 0)
+      {
+        // If we have a non-word-aligned amount of bytes, let's round up the number of words to be read
+        if (file_window_data & 0x3)
+          roundedup_file_window_data = (file_window_data >> 2) + 1;
+        else
+          roundedup_file_window_data = file_window_data >> 2;
+          
+        for (wordloop = 0; wordloop < roundedup_file_window_data; wordloop ++)
+        {
+          filewindow[wordloop] = *((unsigned long int *)file_ptr + wordloop);
+          // pr("This word is: ", (filewindow[wordloop] & 0x000000FF), PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+          // pr("This word is: ", (filewindow[wordloop] & 0x0000FF00) >> 8, PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+          // pr("This word is: ", (filewindow[wordloop] & 0x00FF0000) >> 16, PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+          // pr("This word is: ", (filewindow[wordloop] & 0xFF000000) >> 24, PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+        }
+          
+        // Write to simulated file
+#ifdef HAVE_RTEMS
+        write(fd, filewindow, file_window_data);
+#else
+        // TODO
+#endif
+      }
+    }
+  }
+  // This is a write
+  else
+  {
+    // Move data
+    while (windowloop == 1)
+    {
+      // Read from simulated file
+#ifdef HAVE_RTEMS
+      file_window_data = read(fd, filewindow, FILE_WINDOW_SIZE * 4);
+#else
+      // TODO this is just dummy actions
+      file_window_data = 5;
+      filewindow[0] = (121 << 24) + (120 << 16) + (119 << 8) + 118;
+      filewindow[1] = 122;
+#endif
+      
+      if (file_window_data != FILE_WINDOW_SIZE * 4)
+        windowloop = 0;
+      if (file_window_data != 0)
+      {
+        // Set how many bytes we have before the EOF
+        *(unsigned long int *)file_wdata_ptr = file_window_data;
+        
+        // pr("Writing a window, data bytes:", file_window_data, PR_CPU_ID | PR_STRING | PR_DEC | PR_NEWL);
+        
+        // If we have a non-word-aligned amount of bytes, let's round up the number of words to be read
+        if (file_window_data & 0x3)
+          roundedup_file_window_data = (file_window_data >> 2) + 1;
+        else
+          roundedup_file_window_data = file_window_data >> 2;
+          
+        for (wordloop = 0; wordloop < roundedup_file_window_data; wordloop ++)
+        {
+          *((unsigned long int *)file_ptr + wordloop) = filewindow[wordloop];
+          // pr("This word is: ", (filewindow[wordloop] & 0x000000FF), PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+          // pr("This word is: ", (filewindow[wordloop] & 0x0000FF00) >> 8, PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+          // pr("This word is: ", (filewindow[wordloop] & 0x00FF0000) >> 16, PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+          // pr("This word is: ", (filewindow[wordloop] & 0xFF000000) >> 24, PR_CPU_ID | PR_STRING | PR_CHAR | PR_NEWL);
+        }
+        
+        // Ask for a new data window
+        *(unsigned long int *)file_shift_ptr = 1;
+      }
+    }
+  }
+  
+  // Close the file on the simulation host
+  *(unsigned long int *)file_close_ptr = 1;
+  
+  // Close the simulated file
+#ifdef HAVE_RTEMS
+    close(fd);
+#else
+        // TODO
+#endif
+  
+  return 1;
+}
+
+
+
+// ---------------------------
+// Frequency scaling functions
+// ---------------------------
+///////////////////////////////////////////////////////////////////////////////
+// scale_this_core_frequency - Scales the frequency of the core on which
+//                             the application is running
+void scale_this_core_frequency(unsigned short int divider)
+{
+  freqdevice[get_proc_id() - 1] = divider;
+}
+///////////////////////////////////////////////////////////////////////////////
+// scale_device_frequency - Scales the frequency of any device in the system
+void scale_device_frequency(unsigned short int divider, int ID)
+{
+  freqdevice[ID] = divider;
+}
+///////////////////////////////////////////////////////////////////////////////
+// get_this_core_frequency - Gets the frequency divider of the core on which
+//                           the application is running
+unsigned short int get_this_core_frequency()
+{
+  return (freqdevice[get_proc_id() - 1]);
+}
+///////////////////////////////////////////////////////////////////////////////
+// get_device_frequency - Gets the frequency divider of any device in the system
+unsigned short int get_device_frequency(int ID)
+{
+  return (freqdevice[ID]);
+}
+
+
+// ---------------------------------
+// Shared memory allocation function
+// ---------------------------------
+///////////////////////////////////////////////////////////////////////////////
+// shared_alloc - Manages memory allocation in a shared memory space
+void *shared_alloc(int size)
+{
+  volatile unsigned int  *initialized = (unsigned int *)(shared + SHM_IN_FLAG_OFFSET);
+  volatile unsigned char **next       = (volatile unsigned char **)(shared + SHM_VARNEXT_OFFSET);
+  void *l;
+#ifdef ULTRADEBUG
+  pr("shared_alloc() called with size", size, PR_CPU_ID | PR_STRING | PR_HEX | PR_NEWL);
+#endif
+  WAIT(-3);
+  if (*initialized != 0xbadf00d)
+  {
+    *next = shared + ALLOCABLE_SHM_OFFSET;
+    *initialized = 0xbadf00d;
+  }
+  l = (void *)(*next);
+  *next  = (unsigned char *)normalize_address(*next + size);
+  SIGNAL(-3);
+#ifdef ULTRADEBUG
+  pr("shared_alloc() returns base", (unsigned long int)l, PR_CPU_ID | PR_STRING | PR_HEX | PR_NEWL);
+#endif
+  return l;
+}
+
+
+
+
+
+// -------------------------
+// Synchronization functions
+// -------------------------
+
+// This is to prevent the compiler from optimizing away the polling code
+#define dummy(a) (a)
+
+///////////////////////////////////////////////////////////////////////////////
+// TEST_AND_SET - Returns the old value of a lock
+int TEST_AND_SET(int ID)
+{
+  int a;
+  a = lock[ID];
+  return a;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// WAIT - Spins on a lock
+void WAIT(int ID)
+{
+  while (dummy(lock[ID]))
+  {
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// SIGNAL - Releases a lock
+void SIGNAL(int ID)
+{
+  lock[ID] = 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// send_interrupt - Sends an interrupt to a specified processor ID
+void send_interrupt(int ID)
+{
+  ASSERT(ID != 0);
+  interruptdevice[ID] = 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// interrupt_function - Provides compulsory behaviour in an interrupt routine
+int irq_counter = 0;
+void interrupt_function()
+{
+  *((int*)0x90050000) &= ~0x800000;
+  pr("Inside interrupt routine count", irq_counter, PR_CPU_ID | PR_STRING | PR_DEC | PR_TSTAMP | PR_NEWL);
+  irq_counter ++;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// WAIT_FOR_INITIALIZATION - Blocks until the system initialization is done
+void WAIT_FOR_INITIALIZATION()
+{
+  volatile int *INIT_FLAG = (int *)(shared + INIT_FLAG_OFFSET);
+#ifdef ULTRADEBUG
+  pr("WAIT_FOR_INITIALIZATION() invoked", 0x0, PR_CPU_ID | PR_STRING | PR_TSTAMP | PR_NEWL);
+#endif
+  while ( dummy(*(INIT_FLAG)) != 0xdadbebad )
+  {
+  }
+#ifdef ULTRADEBUG
+  pr("WAIT_FOR_INITIALIZATION() done!", 0x0, PR_CPU_ID | PR_STRING | PR_TSTAMP | PR_NEWL);
+#endif
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// INITIALIZATION_DONE - Marks the completion of the system initialization
+void INITIALIZATION_DONE()
+{
+  volatile int *INIT_FLAG = (int *)(shared + INIT_FLAG_OFFSET);
+  *(INIT_FLAG) = 0xdadbebad;
+#ifdef ULTRADEBUG
+  pr("INITIALIZATION_DONE() done!", 0x0, PR_CPU_ID | PR_STRING | PR_TSTAMP | PR_NEWL);
+#endif
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BARINIT - Initializes the barrier system
+void BARINIT(int ID)
+{
+  int *BARRIER = (int*)(shared + BARRIER_OFFSET + ID * BARRIER_SIZE);
+#ifdef ULTRADEBUG
+  pr("BARINIT(ID) done! by ID", ID, PR_CPU_ID | PR_STRING | PR_DEC | PR_TSTAMP | PR_NEWL);
+#endif
+  BARRIER[0] = 0;
+  BARRIER[1] = 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BARRIER - Implements a barrier synchronization
+void BARRIER(int ID, int n_proc)
+{
+  volatile int *BARRIER = (int *)(shared + BARRIER_OFFSET + ID * BARRIER_SIZE);
+  
+#ifdef ULTRADEBUG
+  pr("BARRIER(ID, n_proc) invoked by ID", ID, PR_CPU_ID | PR_STRING | PR_DEC | PR_TSTAMP | PR_NEWL);
+  pr("BARRIER(ID, n_proc) invoked with n_proc", n_proc, PR_CPU_ID | PR_STRING | PR_DEC | PR_TSTAMP | PR_NEWL);
+#endif
+
+  // A previous barrier is already up
+  while (dummy(BARRIER[1]) != 0)
+  {
+  }
+  
+  WAIT(-2);
+  BARRIER[0] ++;
+  SIGNAL(-2);
+  
+#ifdef ULTRADEBUG
+  pr("BARRIER(): step 1 done", 0x0, PR_CPU_ID | PR_STRING | PR_TSTAMP | PR_NEWL);
+#endif
+
+  while (dummy(BARRIER[0]) != n_proc)
+  {
+  }
+  
+#ifdef ULTRADEBUG
+  pr("BARRIER(): all processes arrived", 0x0, PR_CPU_ID | PR_STRING | PR_TSTAMP | PR_NEWL);
+#endif
+
+  WAIT(-2);
+  BARRIER[1] ++;
+  if (BARRIER[1] == n_proc)
+  {
+    BARRIER[0] = 0;
+    BARRIER[1] = 0;
+  }
+  SIGNAL(-2);
+  
+#ifdef ULTRADEBUG
+  pr("BARRIER() done!", 0x0, PR_CPU_ID | PR_STRING | PR_TSTAMP | PR_NEWL);
+#endif
+}

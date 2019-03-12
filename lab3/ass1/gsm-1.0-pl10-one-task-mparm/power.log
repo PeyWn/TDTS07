@@ -1,0 +1,17 @@
+- STBus Power Modeling Engine, Version 0.92
+- Using propietary information of STMicroelectronics
+- send bugs to <vittorio.zaccaria@st.com>
+- Initializing power estimation engine
+- Using STBus Power Library: /home/mpsim/stbus-power/ast_power_full_linux_bin-R.2003.12.1/models/higher_C.lib
+- Library version "0.9"
+- Library created on 5-December-2003
+- Technology library used : HCMOS9-0.13u
+- Library characterization clock cycle: 20.000000
+- Results will be scaled on the current clock cycle
+- Library minimum capacitance: 1.000000 [pF]
+- Library maximum capacitance: 3.000000 [pF]
+- Default library typical capacitance: 2.000000 [pF]
+- Library characterization voltage: 1.080000 [V]
+- Using library default parameters 
+- Setting dynamic average interval to 100 
+- Setting current clock cycle period to 5.000000 [ns]

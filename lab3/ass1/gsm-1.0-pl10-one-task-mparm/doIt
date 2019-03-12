@@ -1,0 +1,8 @@
+arm-rtems-g++ -B/opt/rtems/os//arm-rtems/arm_bare_bsp/lib/ -specs \
+bsp_specs -qrtems    -Wall  -O2    -DVERBOSE \
+-I/home/sasa/src/MPARM/swarm/core   -mcpu=arm7tdmi \          
+-o bin/toast  ./src/toast.o ./src/toast_lin.o ./src/toast_ulaw.o \
+./src/toast_alaw.o ./src/toast_audio.o ./lib/libgsm.a \
+/opt/rtems/os//arm-rtems/arm_bare_bsp/lib/no-dpmem.rel \
+/opt/rtems/os//arm-rtems/arm_bare_bsp/lib/no-timer.rel \
+/opt/rtems/os//arm-rtems/arm_bare_bsp/lib/no-rtmon.rel
