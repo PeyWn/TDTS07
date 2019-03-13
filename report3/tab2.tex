@@ -1,0 +1,13 @@
+\begin{table}[]
+\begin{tabular}{llllll}
+\begin{tabular}[c]{@{}l@{}}Frequency (MHz)\\      p0 | p1 | p2\end{tabular} & Communication & Bus busy (\% of master cycles) & Bus transferring (\% of master cycles) & Energy spent (μJ) & Exec time (ms) \\
+200 | 200 | 200                                                             & Queue         & 56.25                          & 20.63                                  & 605               & 10             \\
+200 | 200 | 200                                                             & Shared        & 44.91                          & 17.2                                   & 895               & 14             \\
+100 | 200 | 200                                                             & Shared        & 37.39                          & 13.31                                  & 910               & 18.85          \\
+200 | 100 | 200                                                             & Shared        & 39.43                          & 14.22                                  & 769               & 14.09          \\
+200 | 200 | 100                                                             & Shared        & 36.61                          & 13                                     & 999               & 21.5           \\
+100 | 100 | 100                                                             & Shared        & 23.57                          & 8.25                                   & 589               & 26.23          \\
+67 | 67 | 67                                                                & Shared        & 16.54                          & 5.77                                   & 578               & 37.6           \\
+67 | 100 | 100                                                              & Shared        & 20.39                          & 7.13                                   & 614               & 31.5          
+\end{tabular}
+\end{table}
