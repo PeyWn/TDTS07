@@ -1,0 +1,25 @@
+\section{Design-Space Exploration for Energy Minimization}
+
+In this section, different parameters are tested, like the frequency and the cache size, to find the greatest parameter to minimaze the energy consumption. 
+
+Here is the test table:
+
+\begin{table}[]
+\begin{tabular}{lllllll}
+Test & Frequency (mHz) & Divider & Energy spent (μJ) & Execution time (ms) & Cache size (bytes) & Cache type        \\
+1    & 200             & 1       & 45.03             & 3.42                & 4096               & Fully associative \\
+2    & 100             & 2       & 34.37             & 3.42                & 4096               & Fully associative \\
+3    & 67              & 3       & 33.53             & 4.99                & 4096               & Fully associative \\
+4    & 50              & 4       & 33.43             & 6.35                & 4096               & Fully associative \\
+5    & 25              & 8       & 33.35             & 12.39               & 4096               & Fully associative \\
+6    & 200             & 1       & 45.64             & 1.69                & 8192               & Fully associative \\
+7    & 100             & 2       & 34.97             & 3.42                & 8192               & Fully associative \\
+8    & 200             & 1       & 44.76             & 1.69                & 2048               & Fully associative \\
+9    & 100             & 2       & 34.09             & 3.42                & 2048               & Fully associative
+\end{tabular}
+\end{table}
+
+As regarding energy consumption, the cache size has a low impact on the energy consumption for the same frequency.
+In the second hand, when the divider is set to decrease the frequency, the power consumption decrease as well to tend to be around 33.5 μJ. However, the execution time is also increased. 
+
+The greatest parameters set according to the test table to find the best energy consumption and the best execution time is to set the divider as 2 and the cache size as 2048 bytes.
