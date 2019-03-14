@@ -227,42 +227,49 @@ void Controller::print_method() {
       cout << "   -   " << endl;
       cout << " *   - " << endl;
       cout << "   -   " << endl;
+      cout << sc_time_stamp() << endl;
       cout << endl;
       break;
     case ControllerState::EAST:
       cout << "   -   " << endl;
       cout << " -   * " << endl;
       cout << "   -   " << endl;
+      cout << sc_time_stamp() << endl;
       cout << endl;
       break;
     case ControllerState::EAST_AND_WEST:
       cout << "   -   " << endl;
       cout << " *   * " << endl;
       cout << "   -   " << endl;
+      cout << sc_time_stamp() << endl;
       cout << endl;
       break;
     case ControllerState::SOUTH:
       cout << "   -   " << endl;
       cout << " -   - " << endl;
       cout << "   *   " << endl;
+      cout << sc_time_stamp() << endl;
       cout << endl;
       break;
     case ControllerState::NORTH:
       cout << "   *   " << endl;
       cout << " -   - " << endl;
       cout << "   -   " << endl;
+      cout << sc_time_stamp() << endl;
       cout << endl;
       break;
     case ControllerState::NORTH_AND_SOUTH:
       cout << "   *   " << endl;
       cout << " -   - " << endl;
       cout << "   *   " << endl;
+      cout << sc_time_stamp() << endl;
       cout << endl;
       break;
     case ControllerState::NONE:
       cout << "   -   " << endl;
       cout << " -   - " << endl;
       cout << "   -   " << endl;
+      cout << sc_time_stamp() << endl;
       cout << endl;
       break;
   }

@@ -29,7 +29,7 @@ Statistics collected since benchmark request
 ---------------------------------------------------------------------------------
 
 
-Simulation executed: Tue Mar 12 10:28:44 2019
+Simulation executed: Wed Mar 13 09:22:37 2019
 Elapsed time - overall simulation: 0:01 minutes
 Total simulated master system cycles: 339749 (1698745 ns)
 CPU cycles simulated per second: 339749.0

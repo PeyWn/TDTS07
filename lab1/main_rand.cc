@@ -37,7 +37,7 @@ int sc_main(int argc, char **argv) {
   Sensor sensor_east("East__traffic_Sensor");
   sensor_east(EG_sig, ETL_sig, ES_sig);
 
-  Controller traffic_light("Traffic light");
+  Controller traffic_light("Traffic_light");
   traffic_light(NS_sig, SS_sig, ES_sig, WS_sig, NTL_sig, STL_sig, ETL_sig, WTL_sig);
 
   sc_start(sim_time);
