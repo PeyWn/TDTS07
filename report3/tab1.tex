@@ -1,14 +1,20 @@
-\begin{table}[]
-\begin{tabular}{lllllll}
-Test & Frequency (MHz) & Divider & Energy spent (μJ) & Execution time (ms) & Cache size (bytes) & Cache type        \\
-1    & 200             & 1       & 45.03             & 3.42                & 4096               & Fully associative \\
-2    & 100             & 2       & 34.37             & 3.42                & 4096               & Fully associative \\
-3    & 67              & 3       & 33.53             & 4.99                & 4096               & Fully associative \\
-4    & 50              & 4       & 33.43             & 6.35                & 4096               & Fully associative \\
-5    & 25              & 8       & 33.35             & 12.39               & 4096               & Fully associative \\
-6    & 200             & 1       & 45.64             & 1.69                & 8192               & Fully associative \\
-7    & 100             & 2       & 34.97             & 3.42                & 8192               & Fully associative \\
-8    & 200             & 1       & 44.76             & 1.69                & 2048               & Fully associative \\
-9    & 100             & 2       & 34.09             & 3.42                & 2048               & Fully associative
-\end{tabular}
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{Test} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Frequency \\ (MHz)\end{tabular}} & \multicolumn{1}{c|}{Divider} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Energy spent \\ (\SI{33.5}{\micro\joule})\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Exec time \\ (ms)\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Cache size \\ (bytes)\end{tabular}} & \multicolumn{1}{c|}{Cache type} \\ \hline
+1                          & 200                                                                             & 1                            & 45.03                                                                             & 3.42                                                                           & 4096                                                                               & Fully associative               \\ \hline
+2                          & 100                                                                             & 2                            & 34.37                                                                             & 3.42                                                                           & 4096                                                                               & Fully associative               \\ \hline
+3                          & 67                                                                              & 3                            & 33.53                                                                             & 4.99                                                                           & 4096                                                                               & Fully associative               \\ \hline
+4                          & 50                                                                              & 4                            & 33.43                                                                             & 6.35                                                                           & 4096                                                                               & Fully associative               \\ \hline
+5                          & 25                                                                              & 8                            & 33.35                                                                             & 12.39                                                                          & 4096                                                                               & Fully associative               \\ \hline
+6                          & 200                                                                             & 1                            & 45.64                                                                             & 1.69                                                                           & 8192                                                                               & Fully associative               \\ \hline
+7                          & 100                                                                             & 2                            & 34.97                                                                             & 3.42                                                                           & 8192                                                                               & Fully associative               \\ \hline
+8                          & 200                                                                             & 1                            & 44.76                                                                             & 1.69                                                                           & 2048                                                                               & Fully associative               \\ \hline
+9                          & 100                                                                             & 2                            & 34.09                                                                             & 3.42                                                                           & 2048                                                                               & Fully associative               \\ \hline
+\end{tabular}%
+}
 \end{table}
